@@ -1,4 +1,4 @@
-# PRD di ScuolaChill · Team [nome del team]
+# PRD di ScuolaChill · Team Regeestro
 
 > 💡 **Come usare questo template**
 >
@@ -17,7 +17,7 @@
 | **Prodotto** | ScuolaChill |
 | **Team** | Regeestro |
 | **Autori** | Daniele Costantini |
-| **Versione** | 0 |
+| **Versione** | 0.6 |
 | **Data** | 23/09/2026 |
 | **Stato** | Bozza |
 
@@ -26,7 +26,12 @@
 | Versione | Data | Autore | Cosa è cambiato e perché |
 | --- | --- | --- | --- |
 | 0 | 23/09/2026 | Daniele Costantini | Prima stesura |
-| | | | |
+| 0.1 | 25/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DIR-01 e la decisione FR-EXT-01 sul fallimento dell'email |
+| 0.2 | 25/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DIR-02 |
+| 0.3 | 25/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DIR-03 |
+| 0.4 | 25/09/2026 | Daniele Costantini | Numerazione allineata alla traccia: DIR-03 è "Vedere tutto", DIR-04 è "Creare classi e comporle" |
+| 0.5 | 25/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DIR-04 |
+| 0.6 | 25/09/2026 | Daniele Costantini | Storie del Direttore: aggiunti modifica, riattivazione e password dimenticata (DIR-01, DIR-02); user flow e scenari di DIR-01, DIR-02, DIR-04; NFR-04 e NFR-10; permessi del Direttore |
 
 > 💡 Il PRD cambierà durante l'anno. Ogni modifica va registrata qui, con la sua ragione. Un PRD che dice una cosa mentre il codice ne fa un'altra è peggio di nessun PRD.
 
@@ -115,25 +120,70 @@ Arricchisci gli archetipi della traccia.
 
 ### ScuolaChill in poche righe
 
-*Racconta ScuolaChill come lo spiegheresti al Direttore in un minuto. Niente termini tecnici.*
+ScuolaChill è il registro della scuola, ma online e tutto in un posto.
+
+Lei crea gli account di docenti e studenti e forma le classi. Poi ognuno fa la sua parte: i docenti caricano il materiale, preparano le verifiche e danno i voti; gli studenti studiano, fanno le verifiche anche dal telefono e vedono subito i propri voti, materia per materia.
+
+E lei, da una sola pagina, vede come vanno tutte le classi, senza dover chiedere a nessuno.
+
+Assenze, comunicazioni con le famiglie e orario restano fuori: ci concentriamo sulla didattica di ogni giorno.
 
 ### User flow e scenari
 
 Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso completo.
 
-**Storia:** *es. STU-02 · Svolgere una verifica*
+**Storia:** DIR-01 Creare account docente
 
 **User flow**
 
-1. *Lo studente accede a ScuolaChill*
-2. *Apre la sezione Verifiche*
-3. *…*
+1. Il Direttore accede a ScuolaChill
+2. Apre la sezione crea utente e sceglie "Docente"
+3. Inserisce nome, cognome, email e le materie che il docente può insegnare
+4. Viene mandata una mail con le credenziali al docente
+5. Al primo accesso il docente imposta una nuova password e l'account diventa attivo
 
-**Scenario principale.** *Racconta il caso in cui tutto va bene, con un personaggio e una situazione concreta.*
+**Scenario principale.** A inizio settembre è arrivata una nuova docente di matematica, la prof.ssa Giulia Neri. Il Direttore apre ScuolaChill dal PC dell'ufficio, inserisce nome, cognome ed email e sceglie "Matematica" e "Fisica" dall'elenco materie. Dopo il salvataggio la docente compare nell'elenco come "in attesa di attivazione". Il giorno dopo la prof.ssa Neri apre l'email, accede, imposta la sua password e il suo account risulta "attivo". Il Direttore poi la assegna alle classi (DIR-04).
 
-**Scenari alternativi.** *Cosa succede quando qualcosa va storto? Connessione che cade, scadenza superata, doppia scheda aperta…*
+**Scenari alternativi.**
+- *Email già registrata:* il Direttore sbaglia e inserisce l'email di un altro docente. Il sistema non salva e gli dice che l'email è già in uso.
+- *Email non partita:* il servizio email non risponde. L'account viene salvato lo stesso, il Direttore vede un avviso e più tardi reinvia le credenziali dall'elenco docenti (FR-EXT-01).
+- *Docente che lascia la scuola:* a fine anno il Direttore disattiva l'account. Il docente non può più accedere, ma le verifiche e i voti che ha dato restano.
 
-*Ripeti il blocco per le storie principali di Direttore e Docente.*
+**Storia:** DIR-02 Creare account studente
+
+**User flow**
+
+1. Il Direttore accede a ScuolaChill
+2. Apre la sezione crea utente e sceglie "Studente"
+3. Inserisce nome, cognome, email e, se esiste già, la classe
+4. Viene mandata una mail con le credenziali allo studente
+5. Al primo accesso lo studente imposta una nuova password e l'account diventa attivo
+
+**Scenario principale.** Durante l'anno arriva un nuovo studente, Luca Galli, che va in 2B. Il Direttore lo crea inserendo i suoi dati e sceglie la classe 2B. Luca riceve l'email, accede dal telefono, cambia la password e trova subito il materiale e le verifiche della 2B.
+
+**Scenari alternativi.**
+- *Classe non ancora creata:* a inizio anno le classi non esistono ancora. Il Direttore crea gli studenti senza classe e li assegna dopo (DIR-04); la vista d'insieme glieli segnala come "studenti senza classe".
+- *Email non partita:* come per i docenti, l'account resta salvato e il Direttore reinvia le credenziali (FR-EXT-01).
+- *Password dimenticata:* lo studente la reimposta da solo dalla pagina di accesso, senza chiedere al Direttore *(proposta, da confermare)*.
+
+**Storia:** DIR-04 Creare classi e comporle
+
+**User flow**
+
+1. Il Direttore accede a ScuolaChill
+2. Apre la sezione Classi e crea una classe con nome e anno scolastico
+3. Aggiunge gli studenti scegliendoli fra quelli senza classe
+4. Aggiunge le materie e per ognuna sceglie il docente
+5. Controlla il riepilogo della classe: nessuna materia deve restare senza docente
+
+**Scenario principale.** Prima dell'inizio delle lezioni il Direttore prepara la 1A. La crea per l'anno 2026/2027, seleziona i 23 studenti iscritti fra quelli senza classe, aggiunge Italiano, Matematica e Inglese e per ciascuna sceglie il docente fra quelli abilitati. Il riepilogo non mostra avvisi: da quel momento studenti e docenti vedono la 1A fra le proprie classi.
+
+**Scenari alternativi.**
+- *Studente già in un'altra classe:* il sistema non lo iscrive due volte e propone il trasferimento; i voti già presi restano nello storico con la classe di origine *(proposta, da confermare)*.
+- *Nessun docente per una materia:* il Direttore salva comunque la classe; la materia resta evidenziata e compare fra le segnalazioni della vista d'insieme (DIR-03).
+- *Classe creata per errore:* il Direttore la elimina; se però contiene già studenti o voti, il sistema glielo impedisce e spiega il motivo.
+
+*Ripeti il blocco per le storie principali di Docente e Studente.*
 
 ---
 
@@ -143,10 +193,10 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 
 | ID | Storia | AC aggiunti dal team | Note |
 | --- | --- | --- | --- |
-| DIR-01 | Creare account docente | *…da aggiungere, se servono, oltre ai 3 AC della traccia* | *…* |
-| DIR-02 | Creare account studente | *…* | *…* |
-| DIR-03 | Creare classi e comporle | *…* | *Collegata alla decisione aperta sul trasferimento fra classi* |
-| DIR-04 | Vedere tutto | *…* | *…* |
+| DIR-01 | Creare account docente | AC-05 campi obbligatori e formato; AC-06 materie scelte da elenco predefinito; AC-07 cambio password obbligatorio al primo accesso; AC-08 invio email fallito; AC-09 solo il Direttore può creare docenti; AC-10 modifica dei dati; AC-11 riattivazione; AC-12 password dimenticata *(proposta)* (dettaglio in `user-story/DIR-01`) | Collegata a FR-EXT-01 (fallimento email). L'assegnazione del docente alle classi è in DIR-04. Gli account non si eliminano, si disattivano |
+| DIR-02 | Creare account studente | AC-01…AC-03 creazione, email unica, campi obbligatori; AC-04 classe facoltativa alla creazione; AC-05/AC-06 stato "in attesa di attivazione" e cambio password al primo accesso; AC-07 invio email fallito; AC-08 disattivazione; AC-09 solo il Direttore può creare studenti; AC-10 creazione da CSV *(da confermare)*; AC-11 modifica dei dati; AC-12 riattivazione; AC-13 password dimenticata *(proposta)* (dettaglio in `user-story/DIR-02`) | Collegata a FR-EXT-01 (fallimento email) e a DIR-04 (composizione e trasferimento fra classi). Stessi stati account di DIR-01 |
+| DIR-03 | Vedere tutto | AC-01 riepilogo in prima pagina; AC-02 segnalazioni da sistemare; AC-03…AC-06 elenco e dettaglio di classi, studenti e docenti; AC-07 andamento dei voti per classe, materia e periodo; AC-08 ricerca; AC-09 elenchi paginati e filtrabili; AC-10 sola lettura; AC-11 nessun dato; AC-12 solo il Direttore (dettaglio in `user-story/DIR-03`) | Le medie dipendono dalla decisione sulla scala dei voti (DOC-03). Collegata a NFR-04 (usabilità) e NFR-10 (prestazioni) |
+| DIR-04 | Creare classi e comporle | AC-01/AC-02 creazione classe con nome unico per anno scolastico; AC-03/AC-04 aggiunta studenti, uno studente in una sola classe; AC-05…AC-07 materie con un docente abilitato per materia; AC-08 trasferimento *(proposta)*; AC-09 rimozione studente; AC-10 eliminazione solo di classi vuote; AC-11 riepilogo della classe; AC-12 solo il Direttore (dettaglio in `user-story/DIR-04`) | Collegata alla decisione aperta sul trasferimento fra classi: proposta in AC-08, da confermare e poi scrivere come FR |
 | DOC-01 | Caricare materiale didattico | *…* | *…* |
 | DOC-02 | Creare le proprie verifiche | *…* | *Collegata alla decisione aperta sulla modifica dopo lo svolgimento* |
 | DOC-03 | Assegnare i voti | *…* | *Collegata alla decisione aperta sulla scala dei voti* |
@@ -168,11 +218,14 @@ La traccia lascia alcune scelte a te. Ognuna diventa un requisito con il suo ID.
 I punti che devi decidere almeno sono questi.
 
 - [ ] La scala dei voti (DOC-03). Da quanto a quanto, con quale passo, se ammette segni come "+" e "−".
-- [ ] Il trasferimento di uno studente fra classi (DIR-03). Si può fare? Cosa succede ai voti?
+- [ ] Il trasferimento di uno studente fra classi (DIR-04). Si può fare? Cosa succede ai voti?
 - [ ] La modifica di una verifica dopo lo svolgimento (DOC-02).
 - [ ] La connessione che cade durante una verifica (STU-02).
-- [ ] Il fallimento del servizio esterno (per esempio l'email delle credenziali).
+- [x] Il fallimento del servizio esterno (per esempio l'email delle credenziali).
 - [ ] *Altre decisioni che il team ha scoperto*
+
+> **FR-EXT-01 · Fallimento del servizio email delle credenziali** (collegato a DIR-01, DIR-02)
+> Se l'invio dell'email con le credenziali fallisce, l'account viene comunque creato nello stato "in attesa di attivazione". Il Direttore vede subito un avviso che l'email non è partita e può richiedere un nuovo invio dall'elenco utenti. Motivazione: un disservizio temporaneo del provider email non deve bloccare il lavoro del Direttore né fargli reinserire i dati.
 
 > 📌 **Cosa resta davvero da decidere voi (non pre-compilabile dalla traccia):**
 > - Le assunzioni sulla scuola (numero studenti/docenti/classi, orario, connettività)
@@ -196,12 +249,13 @@ Ogni requisito ha una soglia, una condizione e un modo per verificarlo. Ed è co
 | NFR-01 | Prestazioni | *es. Apertura della verifica nel picco* | *es. meno di 2 s per il 95% delle richieste, 75 utenti nello stesso minuto — da tarare sulla vostra stima di carico* | *Test di carico* | STU-02 |
 | NFR-02 | Sicurezza | Tutto il traffico fra frontend e backend viaggia su HTTPS | Nessuna chiamata in chiaro, certificato valido | Ispezione del traffico / certificato | Tutte |
 | NFR-03 | Sicurezza | Il controllo dei ruoli (Direttore/Docente/Studente) è applicato lato backend su ogni endpoint | Ogni chiamata API verifica il ruolo indipendentemente dal frontend | Test con Postman usando token di ruoli diversi | Tutte |
-| NFR-04 | Usabilità | *…da definire — es. numero massimo di click per completare STU-02* | *…* | *…* | *…* |
+| NFR-04 | Usabilità | Dalla vista d'insieme il Direttore raggiunge la pagina che risolve una segnalazione (studente senza classe, materia senza docente, email non partita) con un solo click | 1 click da ogni segnalazione, senza passare da menu intermedi | Prova con un collaudatore nel ruolo di Direttore | DIR-03, DIR-04 |
 | NFR-05 | Disponibilità | Il sistema è deployato sull'infrastruttura cloud scelta e raggiungibile pubblicamente | Uptime minimo durante il periodo di collaudo (da definire, es. 99%) | Monitoraggio / test di raggiungibilità | Tutte |
 | NFR-06 | Ambientale | *…da definire — es. dimensionamento minimo per contenere i costi cloud entro il budget* | *…* | *…* | *…* |
 | NFR-07 | Supporto | L'applicazione gira in due configurazioni separate, Development e Production, senza segreti nel codice sorgente | Segreti gestiti tramite variabili d'ambiente / secret manager | Revisione della configurazione e del repository | *Trasversale* |
 | NFR-08 | Interazione | Le API principali sono documentate con OpenAPI/Swagger e verificate con una collezione Postman | Copertura di tutte le route CRUD principali | Revisione Swagger + esecuzione della collezione Postman | Tutte |
-| NFR-09 | Conformità | Gli elenchi (studenti, materiali, voti) sono paginati e le risposte di errore hanno un formato uniforme con codici HTTP coerenti | Paginazione su ogni collezione, schema di errore unico su tutta l'API | Test automatici sulle risposte | DIR-04, STU-01, STU-03 |
+| NFR-09 | Conformità | Gli elenchi (studenti, materiali, voti) sono paginati e le risposte di errore hanno un formato uniforme con codici HTTP coerenti | Paginazione su ogni collezione, schema di errore unico su tutta l'API | Test automatici sulle risposte | DIR-03, STU-01, STU-03 |
+| NFR-10 | Prestazioni | La vista d'insieme del Direttore (riepilogo, segnalazioni, medie) si apre rapidamente anche con tutta la scuola caricata | Meno di 2 s per il 95% delle aperture, con 484 studenti, 21 classi e un quadrimestre di voti — *da tarare sulla stima di carico* | Test di carico su dati di prova della dimensione della scuola | DIR-03 |
 
 > 💡 Le famiglie da coprire sono queste. **Prestazioni, disponibilità, scalabilità, sicurezza** e **conformità** vengono dalla lezione sui requisiti funzionali e non funzionali. **Usabilità, ambientali, supporto** e **interazione** vengono dalla lezione sul PRD. Se una famiglia resta vuota, scrivi perché non vi riguarda.
 >
@@ -226,7 +280,7 @@ Quello che date per vero senza poterlo garantire.
 
 | ID | Assunzione | Cosa succede se è falsa |
 | --- | --- | --- |
-| ASS-01 | La scuola ha 484 studenti e 18 docenti | *Il dimensionamento va rifatto* |
+| ASS-01 | La scuola ha 484 studenti e 18 docenti | Il dimensionamento va rifatto |
 | | | |
 
 ### Vincoli
@@ -244,5 +298,259 @@ Le cose esterne senza cui non potete andare avanti.
 
 | ID | Dipendenza | Serve entro | Chi se ne occupa |
 | --- | --- | --- | --- |
-| DIP-01 | *es. Account attivo sul servizio email* | *Prima del collaudo* | *nome* |
+| DIP-01 | Account attivo sul servizio email per l'invio delle credenziali (DIR-01, DIR-02) | Prima del collaudo | *nome* |
 | | | | |
+
+# Seconda parte · Il come
+
+<aside>
+💡
+
+Da qui in poi parli al tuo docente e al tuo team, non al Direttore. Ogni scelta tecnica va motivata e confrontata con almeno un'alternativa. "Lo conosciamo" è una motivazione valida, ma non può essere l'unica.
+
+</aside>
+
+## Stima del carico
+
+### Utenti concorrenti
+
+| Situazione | Utenti concorrenti | Da dove viene il numero |
+| --- | --- | --- |
+| Uso normale durante la giornata | *…* | *…* |
+| Picco delle 9:00 (verifiche) | *…* | *…* |
+| Fine quadrimestre (voti) | *…* | *…* |
+
+### Profilo di carico
+
+| Operazione | Frequente? | Pesante? | Critica? | Note |
+| --- | --- | --- | --- | --- |
+| Login | *…* | *…* | *…* | *…* |
+| Apertura verifica | *…* | *…* | *…* | *…* |
+| Consegna verifica | *…* | *…* | *…* | *…* |
+| Dashboard del Direttore | *…* | *…* | *…* | *…* |
+| Caricamento materiale | *…* | *…* | *…* | *…* |
+
+<aside>
+💡
+
+I numeri di qui devono essere coerenti con la scuola che avete immaginato e con i requisiti non funzionali. Se dichiarate 800 studenti, non potete dimensionare per 20 utenti senza spiegare perché.
+
+</aside>
+
+---
+
+## Scelte tecnologiche
+
+| Area | Scelta | Alternativa considerata | Perché avete scelto così |
+| --- | --- | --- | --- |
+| Backend | *…* | *…* | *…* |
+| Frontend | *…* | *…* | *…* |
+| Database | *…* | *…* | *…* |
+| Provider cloud | *…* | *…* | *…* |
+| Servizi cloud | *…* | *…* | *…* |
+| Regione | *…* | *…* | *…* |
+| Servizio esterno | *…* | *…* | *…* |
+
+---
+
+## Architettura
+
+### Diagramma dei componenti
+
+*Inserisci qui il diagramma. Deve mostrare i componenti principali e come comunicano.*
+
+### I livelli
+
+| Livello | Cosa fa in ScuolaChill | Esempio concreto |
+| --- | --- | --- |
+| Presentation / API | *…* | *…* |
+| Application / Business | *…* | *…* |
+| Data access | *…* | *…* |
+
+### Le dipendenze fra i livelli
+
+*Chi può conoscere chi, e in quale direzione. Spiega come questa struttura riduce l'accoppiamento e rende il sistema testabile.*
+
+---
+
+## Le API
+
+### Le risorse
+
+*Elenca le risorse REST principali. Es. `/classi`, `/verifiche`, `/voti`.*
+
+### Il contratto delle API principali
+
+| Verbo | Route | Chi può chiamarla | Payload di esempio | Risposte previste |
+| --- | --- | --- | --- | --- |
+| `POST` | `/api/docenti` | Direttore | `{ "nome": "Mario", "cognome": "Rossi", "email": "m.rossi@…", "materieIds": [1, 3] }` | 201 creato, 400 dati non validi, 403 ruolo non autorizzato, 409 email già registrata |
+| `GET` | *…* | *…* | *…* | *…* |
+| `PUT` | *…* | *…* | *…* | *…* |
+| `PATCH` | *…* | *…* | *…* | *…* |
+| `DELETE` | *…* | *…* | *…* | *…* |
+
+### Errori, validazione e paginazione
+
+**Formato uniforme degli errori.** *Mostra un esempio di risposta di errore.*
+
+**Validazione degli input.** *Dove avviene e con quali regole.*
+
+**Paginazione.** *Come funziona. Parametri, dimensione di default, formato della risposta.*
+
+**Documentazione e verifica.** *Come userete OpenAPI/Swagger e la collezione Postman.*
+
+---
+
+## Persistenza e modello dei dati
+
+### Diagramma ER
+
+*Inserisci qui il diagramma entità-relazioni con le cardinalità.*
+
+### Identificatori
+
+*Come vengono generati gli ID, e perché. Numeri incrementali, UUID, altro?*
+
+### Tre modelli diversi
+
+| Entità | Nel database | Nel dominio | Esposta dall'API | Dove differiscono e perché |
+| --- | --- | --- | --- | --- |
+| *es. Voto* | *…* | *…* | *…* | *…* |
+
+### Normalizzazione e letture aggregate
+
+*Come è normalizzato il modello. Dove serve una lettura denormalizzata, per esempio la pagina dei voti per materia o la dashboard del Direttore.*
+
+### Accesso ai dati
+
+*Strategia di accesso ai dati e uso delle query parametrizzate contro la SQL injection.*
+
+---
+
+## Sicurezza e integrazione
+
+### Autenticazione e token
+
+*Come si ottiene il token, cosa contiene, come viaggia il profilo utente.*
+
+### Chi può fare cosa
+
+| Operazione | Direttore | Docente | Studente |
+| --- | --- | --- | --- |
+| Creare un docente | ✅ | ❌ | ❌ |
+| Disattivare un docente | ✅ | ❌ | ❌ |
+| Creare, modificare, disattivare uno studente | ✅ | ❌ | ❌ |
+| Reinviare le credenziali | ✅ | ❌ | ❌ |
+| Creare e comporre le classi, trasferire studenti | ✅ | ❌ | ❌ |
+| Vedere la vista d'insieme della scuola | ✅ | ❌ | ❌ |
+| Caricare materiale | ✅ | ✅ | ❌ |
+| Vedere i voti di uno studente | ✅ | ✅ | ✅ |
+| *…* |  |  |  |
+
+*Spiega dove viene fatto rispettare questo controllo. Ricorda che il frontend non basta mai.*
+
+### L'API esterna
+
+*Quale servizio usate, per cosa, e cosa succede quando non risponde.*
+
+### Configurazione e segreti
+
+*Dove vivono connection string e segreti, e come cambiano fra Development e Production.*
+
+---
+
+## Qualità architetturale
+
+### Organizzazione del codice
+
+*Struttura di progetti, moduli e cartelle, con le motivazioni.*
+
+### Dependency inversion e IoC
+
+*Dove li applicate e a cosa servono in ScuolaChill.*
+
+### Testabilità
+
+*Cosa testerete, e come separate database e API esterne per sostituirli nei test.*
+
+### Development e Production
+
+|  | Development | Production |
+| --- | --- | --- |
+| Database | *…* | *…* |
+| Segreti | *…* | *…* |
+| Log | *…* | *…* |
+| *…* |  |  |
+
+---
+
+## Dimensionamento e costi
+
+| Componente | Servizio | Taglia (CPU, RAM, storage) | Istanze | Costo mensile stimato |
+| --- | --- | --- | --- | --- |
+| Backend | *…* | *…* | *…* | *…* |
+| Database | *…* | *…* | *…* | *…* |
+| Storage dei file | *…* | *…* | *…* | *…* |
+| *…* |  |  |  |  |
+| **Totale** |  |  |  | ***…*** |
+
+**Strategia di scalabilità.** *Verticale o orizzontale? Manuale o automatica?*
+
+**Se la stima si rivela sbagliata.** *Cosa fate se gli utenti sono il doppio? E se sono la metà?*
+
+---
+
+## Piano di deployment
+
+*Come ScuolaChill arriva sul cloud scelto. Come si passa da una versione alla successiva. Come vengono gestite nel tempo le modifiche allo schema del database.*
+
+---
+
+# Terza parte · Tempi e valutazione
+
+## Milestone
+
+| Milestone | Cosa è pronto | Data prevista | Responsabile |
+| --- | --- | --- | --- |
+| PRD validato | Questo documento | *…* | *tutto il team* |
+| *Prima versione in cloud* | *…* | *…* | *…* |
+| *Collaudo con il primo anno* | *…* | *…* | *…* |
+| *…* |  |  |  |
+
+<aside>
+💡
+
+Stima il tempo di ogni fase come se tutto andasse bene. Poi aggiungi un margine. Non va mai tutto bene.
+
+</aside>
+
+## Piano di valutazione
+
+Come capirete che ScuolaChill funziona e come validerete che la vostra soluzione sta avendo un impatto positivo?
+
+| Metrica | Obiettivo | Come la misurate | Quando |
+| --- | --- | --- | --- |
+| *es. Collaudatori che completano una verifica senza aiuto* | *90%* | *Osservazione durante il collaudo* | *Collaudo* |
+| *es. Voti persi* | *0* | *Confronto fra voti inseriti e voti salvati* | *Primo mese* |
+|  |  |  |  |
+
+| Metrica | Obiettivo | Come la misurate | Quando |
+| --- | --- | --- | --- |
+| *es. Collaudatori che completano una verifica senza aiuto* | *90%* | *Osservazione durante il collaudo* | *Collaudo* |
+| *es. Voti persi* | *0* | *Confronto fra voti inseriti e voti salvati* | *Primo mese* |
+|  |  |  |  |
+
+---
+
+## Acceptance Criteria di questa PRD
+
+- [ ]  Ogni parte rappresentata da questo template ha tutte le sezioni richieste senza saltare nessun punto
+- [ ]  Avete deciso tutti i punti che la traccia e gli esempi lasciano aperti.
+- [ ]  Ogni requisito non funzionale ha una soglia e una condizione.
+- [ ]  Ogni NFR è collegato ad almeno una user story.
+- [ ]  Avete inserito i requisiti impliciti emersi da interviste che avete fatto.
+- [ ]  Assunzioni, vincoli e dipendenze sono separati e scritti.
+- [ ]  I numeri della stima del carico sono coerenti con la scuola immaginata e con il dimensionamento.
+- [ ]  Ogni scelta tecnica ha almeno un'alternativa scartata e una motivazione.
+- [ ]  La prima parte non contiene scelte tecniche.
+- [ ]  Lo storico delle versioni è aggiornato .
