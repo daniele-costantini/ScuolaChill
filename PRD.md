@@ -17,7 +17,7 @@
 | **Prodotto** | ScuolaChill |
 | **Team** | Regeestro |
 | **Autori** | Daniele Costantini |
-| **Versione** | 0.6 |
+| **Versione** | 0.0.9 |
 | **Data** | 23/09/2026 |
 | **Stato** | Bozza |
 
@@ -26,12 +26,15 @@
 | Versione | Data | Autore | Cosa è cambiato e perché |
 | --- | --- | --- | --- |
 | 0 | 23/09/2026 | Daniele Costantini | Prima stesura |
-| 0.1 | 25/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DIR-01 e la decisione FR-EXT-01 sul fallimento dell'email |
-| 0.2 | 25/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DIR-02 |
-| 0.3 | 25/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DIR-03 |
-| 0.4 | 25/09/2026 | Daniele Costantini | Numerazione allineata alla traccia: DIR-03 è "Vedere tutto", DIR-04 è "Creare classi e comporle" |
-| 0.5 | 25/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DIR-04 |
-| 0.6 | 25/09/2026 | Daniele Costantini | Storie del Direttore: aggiunti modifica, riattivazione e password dimenticata (DIR-01, DIR-02); user flow e scenari di DIR-01, DIR-02, DIR-04; NFR-04 e NFR-10; permessi del Direttore |
+| 0.0.1 | 25/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DIR-01 e la decisione FR-EXT-01 sul fallimento dell'email |
+| 0.0.2 | 25/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DIR-02 |
+| 0.0.3 | 25/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DIR-03 |
+| 0.0.4 | 25/09/2026 | Daniele Costantini | Numerazione allineata alla traccia: DIR-03 è "Vedere tutto", DIR-04 è "Creare classi e comporle" |
+| 0.0.5 | 25/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DIR-04 |
+| 0.0.6 | 25/09/2026 | Daniele Costantini | Storie del Direttore: aggiunti modifica, riattivazione e password dimenticata (DIR-01, DIR-02); user flow e scenari di DIR-01, DIR-02, DIR-04; NFR-04 e NFR-10; permessi del Direttore |
+| 0.0.7 | 30/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DOC-01; user flow e scenari di DOC-01 |
+| 0.0.8 | 30/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DOC-02, con la proposta sulla modifica di una verifica dopo lo svolgimento (AC-10); user flow e scenari di DOC-02 |
+| 0.0.9 | 30/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DOC-03, con la proposta sulla scala dei voti (AC-01); user flow e scenari di DOC-03 |
 
 > 💡 Il PRD cambierà durante l'anno. Ogni modifica va registrata qui, con la sua ragione. Un PRD che dice una cosa mentre il codice ne fa un'altra è peggio di nessun PRD.
 
@@ -183,7 +186,58 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 - *Nessun docente per una materia:* il Direttore salva comunque la classe; la materia resta evidenziata e compare fra le segnalazioni della vista d'insieme (DIR-03).
 - *Classe creata per errore:* il Direttore la elimina; se però contiene già studenti o voti, il sistema glielo impedisce e spiega il motivo.
 
-*Ripeti il blocco per le storie principali di Docente e Studente.*
+**Storia:** DOC-01 Caricare materiale didattico
+
+**User flow**
+
+1. Il Docente accede a ScuolaChill
+2. Apre una sua classe e materia e sceglie "Carica materiale"
+3. Inserisce il titolo e, se vuole, una descrizione
+4. Sceglie il file (o incolla un link) e, se insegna la stessa materia in altre classi, le aggiunge
+5. Salva: il materiale compare nell'elenco e gli studenti lo vedono subito
+
+**Scenario principale.** La domenica sera la prof.ssa Neri prepara la lezione di lunedì sulle equazioni di secondo grado. Da casa apre ScuolaChill, entra in 2B · Matematica, carica il PDF con gli esercizi e seleziona anche la 2C, dove insegna la stessa materia. Lunedì mattina gli studenti delle due classi trovano il materiale in cima all'elenco.
+
+**Scenari alternativi.**
+- *File troppo grande o formato non ammesso:* il sistema rifiuta il file prima di inviarlo e dice qual è il limite o quali formati sono accettati.
+- *Connessione che cade durante il caricamento:* il materiale non viene salvato a metà; la docente vede un avviso e riprova senza reinserire titolo e classi.
+- *Cambio di docente:* a metà anno il Direttore assegna Matematica della 2B a un altro docente. Gli studenti continuano a vedere i materiali della prof.ssa Neri *(proposta, da confermare)*.
+
+**Storia:** DOC-02 Creare le proprie verifiche
+
+**User flow**
+
+1. Il Docente accede a ScuolaChill
+2. Apre una sua classe e materia e sceglie "Nuova verifica"
+3. Inserisce titolo e istruzioni e aggiunge le domande, con punteggio e risposta corretta
+4. Imposta apertura, chiusura e durata e controlla l'anteprima
+5. Pubblica: gli studenti vedono la verifica in elenco e possono aprirla dall'ora di apertura
+
+**Scenario principale.** Il mercoledì pomeriggio la prof.ssa Neri prepara la verifica sulle equazioni di secondo grado per la 2B. Crea 8 domande a risposta multipla e 2 aperte, imposta l'apertura venerdì alle 9:00, la chiusura alle 10:00 e una durata di 50 minuti. Dall'anteprima si accorge di un'opzione ripetuta, la corregge e pubblica. Venerdì alle 9:00 gli studenti la aprono dal laboratorio; alla consegna le domande chiuse sono già corrette e a lei restano solo le due aperte.
+
+**Scenari alternativi.**
+- *Errore scoperto durante la verifica:* a verifica aperta la docente nota che una domanda ha la risposta corretta sbagliata. Non può più modificarla, ma la annulla: non conta per nessuno e i punteggi si ricalcolano *(proposta, da confermare)*.
+- *Laboratorio occupato:* la verifica è programmata ma il laboratorio non è disponibile. Prima dell'apertura la docente sposta la finestra al lunedì senza perdere nulla.
+- *Stessa verifica in un'altra classe:* per la 2C la docente duplica la verifica, cambia la classe e la finestra e la pubblica.
+
+**Storia:** DOC-03 Assegnare i voti
+
+**User flow**
+
+1. Il Docente accede a ScuolaChill
+2. Apre una sua classe e materia e sceglie la verifica chiusa da valutare
+3. Per ogni studente controlla il punteggio delle domande chiuse e corregge quelle aperte
+4. Accetta o cambia il voto proposto e, se vuole, aggiunge un commento
+5. Pubblica i voti: ogni studente vede il suo
+
+**Scenario principale.** Il sabato mattina la prof.ssa Neri apre la verifica della 2B chiusa venerdì. Le domande a risposta multipla sono già corrette; lei legge le due aperte di ogni studente e assegna i punti. Per Luca Galli il sistema propone 7, lei lo lascia così e aggiunge "Bene il procedimento, attenzione ai segni". Finito l'ultimo studente pubblica i voti, e Luca li vede dal telefono pochi minuti dopo.
+
+**Scenari alternativi.**
+- *Interrogazione:* il lunedì la docente interroga due studenti e inserisce subito i due voti orali; gli studenti li vedono in giornata.
+- *Studente assente:* uno studente non ha svolto la verifica e risulta "non svolta". La recupera su carta la settimana dopo e la docente gli inserisce il voto a mano.
+- *Voto sbagliato:* la docente si accorge di aver dato 5 invece di 6,5. Lo corregge; lo studente vede il voto nuovo e il sistema tiene traccia del cambio.
+
+*Ripeti il blocco per le altre storie principali di Docente e Studente.*
 
 ---
 
@@ -197,9 +251,9 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 | DIR-02 | Creare account studente | AC-01…AC-03 creazione, email unica, campi obbligatori; AC-04 classe facoltativa alla creazione; AC-05/AC-06 stato "in attesa di attivazione" e cambio password al primo accesso; AC-07 invio email fallito; AC-08 disattivazione; AC-09 solo il Direttore può creare studenti; AC-10 creazione da CSV *(da confermare)*; AC-11 modifica dei dati; AC-12 riattivazione; AC-13 password dimenticata *(proposta)* (dettaglio in `user-story/DIR-02`) | Collegata a FR-EXT-01 (fallimento email) e a DIR-04 (composizione e trasferimento fra classi). Stessi stati account di DIR-01 |
 | DIR-03 | Vedere tutto | AC-01 riepilogo in prima pagina; AC-02 segnalazioni da sistemare; AC-03…AC-06 elenco e dettaglio di classi, studenti e docenti; AC-07 andamento dei voti per classe, materia e periodo; AC-08 ricerca; AC-09 elenchi paginati e filtrabili; AC-10 sola lettura; AC-11 nessun dato; AC-12 solo il Direttore (dettaglio in `user-story/DIR-03`) | Le medie dipendono dalla decisione sulla scala dei voti (DOC-03). Collegata a NFR-04 (usabilità) e NFR-10 (prestazioni) |
 | DIR-04 | Creare classi e comporle | AC-01/AC-02 creazione classe con nome unico per anno scolastico; AC-03/AC-04 aggiunta studenti, uno studente in una sola classe; AC-05…AC-07 materie con un docente abilitato per materia; AC-08 trasferimento *(proposta)*; AC-09 rimozione studente; AC-10 eliminazione solo di classi vuote; AC-11 riepilogo della classe; AC-12 solo il Direttore (dettaglio in `user-story/DIR-04`) | Collegata alla decisione aperta sul trasferimento fra classi: proposta in AC-08, da confermare e poi scrivere come FR |
-| DOC-01 | Caricare materiale didattico | *…* | *…* |
-| DOC-02 | Creare le proprie verifiche | *…* | *Collegata alla decisione aperta sulla modifica dopo lo svolgimento* |
-| DOC-03 | Assegnare i voti | *…* | *Collegata alla decisione aperta sulla scala dei voti* |
+| DOC-01 | Caricare materiale didattico | AC-01 caricamento con titolo, classe e materia; AC-02 solo le proprie classi e materie; AC-03 campi obbligatori; AC-04 formati ammessi; AC-05 dimensione massima *(proposta 20 MB)*; AC-06 link esterno *(proposta)*; AC-07 stessa materia in più classi; AC-08 modifica; AC-09 eliminazione; AC-10 elenco paginato; AC-11 caricamento interrotto; AC-12 materiale di chi non insegna più la materia *(proposta)*; AC-13 solo il docente della classe e materia (dettaglio in `user-story/docente/DOC-01`) | Il materiale appartiene alla coppia classe/materia, non al docente. Collegata a DIR-04 e STU-01. Da chiarire se il Direttore può caricare materiale |
+| DOC-02 | Creare le proprie verifiche | AC-01 creazione in bozza; AC-02 solo le proprie classi e materie; AC-03/AC-04 tipi di domanda (multipla, vero/falso, aperta) con punteggio e risposta corretta; AC-05 ordine delle domande; AC-06 finestra di svolgimento e durata; AC-07 pubblicazione; AC-08 anteprima; AC-09 modifica prima dell'apertura; AC-10 modifica dopo l'apertura *(proposta)*; AC-11 duplicazione; AC-12 eliminazione; AC-13 elenco paginato; AC-14 correzione automatica delle domande chiuse; AC-15 solo il docente della classe e materia (dettaglio in `user-story/docente/DOC-02`) | Collegata alla decisione aperta sulla modifica dopo lo svolgimento: proposta in AC-10, da confermare e poi scrivere come FR. Il punteggio non è il voto (DOC-03) |
+| DOC-03 | Assegnare i voti | AC-01 scala da 1 a 10 con passo 0,5 *(proposta)*; AC-02 correzione della verifica online; AC-03 voto proposto dal punteggio *(proposta)*; AC-04 pubblicazione dei voti di una verifica; AC-05 voto per prove fuori da ScuolaChill (scritto, orale, pratico); AC-06 voti a tutta la classe; AC-07 solo le proprie classi e materie; AC-08 verifica non svolta; AC-09 commento; AC-10 modifica con storico; AC-11 eliminazione con storico; AC-12 voti per quadrimestre *(proposta)*; AC-13 registro della classe; AC-14 solo il docente della classe e materia (dettaglio in `user-story/docente/DOC-03`) | Collegata alla decisione aperta sulla scala dei voti: proposta in AC-01, da confermare e poi scrivere come FR. Le medie di DIR-03 e STU-03 dipendono da qui |
 | STU-01 | Consultare il materiale didattico | *…* | *…* |
 | STU-02 | Svolgere una verifica | *…* | *Collegata alla decisione aperta sulla connessione che cade* |
 | STU-03 | Consultare i propri voti | *…* | *…* |
@@ -317,8 +371,8 @@ Da qui in poi parli al tuo docente e al tuo team, non al Direttore. Ogni scelta 
 | Situazione | Utenti concorrenti | Da dove viene il numero |
 | --- | --- | --- |
 | Uso normale durante la giornata | *…* | *…* |
-| Picco delle 9:00 (verifiche) | *…* | *…* |
-| Fine quadrimestre (voti) | *…* | *…* |
+| Picco delle 9:00 (verifiche) | 100 | *…* |
+| Fine quadrimestre (voti) | 350 | *…* |
 
 ### Profilo di carico
 
