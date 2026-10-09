@@ -81,7 +81,7 @@ Dato che sono autenticato come Studente, quando provo a vedere i voti di un altr
 - Lo studente vede solo voti in stato `pubblicato` (DOC-03, Stati del voto).
 - Le medie si calcolano con le stesse regole della vista d'insieme del Direttore (DIR-03): uno studente e il Direttore devono vedere la stessa media.
 - Lo storico delle modifiche di un voto resta al docente e al Direttore: lo studente vede solo che il voto è stato modificato (AC-10).
-- Ordine di grandezza: circa 30-40 voti per studente a quadrimestre; a fine quadrimestre (350 utenti concorrenti) è una delle pagine più aperte.
+- Ordine di grandezza: circa 30-40 voti per studente a quadrimestre; a fine quadrimestre (400 utenti concorrenti) è una delle pagine più aperte.
 
 ## Fuori perimetro di questa storia
 

@@ -43,7 +43,7 @@ Dato che voglio capire come sta andando la scuola, quando apro la sezione andame
 Dato che cerco uno studente o un docente, quando scrivo almeno tre lettere del nome o del cognome, allora il sistema mi mostra i risultati corrispondenti da cui posso aprire il dettaglio.
 
 **AC-09 · Elenchi paginati e filtrabili**
-Dato che gli elenchi di studenti (484) e docenti sono lunghi, quando li consulto, allora sono divisi in pagine e posso filtrarli per classe e per stato dell'account (attivo, in attesa di attivazione, disattivato); di default vedo solo gli account attivi.
+Dato che gli elenchi di studenti (500) e docenti sono lunghi, quando li consulto, allora sono divisi in pagine e posso filtrarli per classe e per stato dell'account (attivo, in attesa di attivazione, disattivato); di default vedo solo gli account attivi.
 
 **AC-10 · Sola lettura**
 Dato che sono nella vista d'insieme, quando consulto voti e verifiche, allora li posso solo vedere: voti e verifiche li modificano esclusivamente i docenti che li hanno creati.
@@ -84,7 +84,7 @@ Dato che sono autenticato come Docente o Studente, quando provo ad accedere alla
 | Decisione aperta | Trasferimento fra classi (DIR-04) | Da decidere in quale classe contano i voti di uno studente trasferito |
 | NFR | NFR-03 | Controllo ruolo lato backend (AC-12) |
 | NFR | NFR-09 | Elenchi paginati (AC-09) |
-| NFR | NFR-10 · Prestazioni | La vista d'insieme si apre in meno di 2 s anche con 484 studenti (il Direttore ha poco tempo, ARC-001) |
+| NFR | NFR-10 · Prestazioni | La vista d'insieme si apre in meno di 2 s anche con 500 studenti (il Direttore ha poco tempo, ARC-001) |
 | NFR | NFR-04 · Usabilità | Da una segnalazione alla pagina che la risolve con un solo click (AC-02) |
 | Storia | DIR-01, DIR-02 | Stati degli account e reinvio credenziali |
 | Storia | DIR-04 | Classi, materie e docenti assegnati |

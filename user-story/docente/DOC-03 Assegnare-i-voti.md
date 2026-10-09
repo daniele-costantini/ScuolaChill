@@ -79,7 +79,7 @@ Dato che sono autenticato come Studente, o come Docente su una classe o materia 
 - La media è la media aritmetica dei voti pubblicati, per materia e per quadrimestre *(proposta: tutti i voti pesano uguale)*.
 - I voti non si cancellano mai davvero: modifiche ed eliminazioni restano nello storico (AC-10, AC-11).
 - Se lo studente cambia classe, i voti restano con la classe in cui li ha presi (DIR-04, AC-08).
-- Ordine di grandezza: con 484 studenti, circa 10 materie e 3-4 voti per materia a quadrimestre, sono circa 15.000-20.000 voti a quadrimestre.
+- Ordine di grandezza: con 500 studenti, circa 10 materie e 3-4 voti per materia a quadrimestre, sono circa 15.000-20.000 voti a quadrimestre.
 
 ## Fuori perimetro di questa storia
 

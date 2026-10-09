@@ -17,7 +17,7 @@
 | **Prodotto** | ScuolaChill |
 | **Team** |  |
 | **Autori** | Daniele Costantini |
-| **Versione** | 0.1.4 |
+| **Versione** | 0.1.5 |
 | **Data** | 09/10/2026 |
 | **Stato** | Bozza |
 
@@ -40,6 +40,7 @@
 | 0.1.2 | 02/10/2026 | Daniele Costantini | Aggiunti gli AC del team per STU-03; user flow e scenari di STU-03 |
 | 0.1.3 | 09/10/2026 | Daniele Costantini | Scritto "Perché esiste ScuolaChill", lato business e lato tecnico |
 | 0.1.4 | 09/10/2026 | Daniele Costantini | Dispositivi dello studente: iPad a scuola e PC, smartphone solo per consultare fuori da scuola (a scuola resta nell'armadietto). Aggiornati archetipo, scenari e AC di STU-01, STU-02, STU-03; aggiunti NFR-11, ASS-02, ASS-03, VIN-02, VIN-03 |
+| 0.1.5 | 09/10/2026 | Daniele Costantini | Numero di studenti allineato a 500 in tutto il documento e nelle storie; NFR-01 tarato su 100 studenti; aggiunte assunzioni ASS-04…ASS-09, vincoli VIN-04…VIN-09 e dipendenze DIP-02…DIP-06; compiti per casa fuori perimetro; scritti utenti concorrenti e profilo di carico |
 
 > 💡 Il PRD cambierà durante l'anno. Ogni modifica va registrata qui, con la sua ragione. Un PRD che dice una cosa mentre il codice ne fa un'altra è peggio di nessun PRD.
 
@@ -72,6 +73,7 @@
 - Gestione amministrativa/contabile della scuola (rette, pagamenti)
 - Orario delle lezioni (timetabling)
 - Messaggistica diretta fra utenti (chat)
+- Compiti per casa con consegna e correzione: il docente può caricare gli esercizi come materiale didattico (DOC-01), ma ScuolaChill non ne gestisce consegna, scadenza e voto
 
 > ⚠️ *Questa lista deriva da ciò che la traccia NON menziona fra le funzionalità richieste. Verificatela con il team: se avete in mente di aggiungere qualcosa di più, va spostato sopra, fra "cosa è incluso".*
 
@@ -352,7 +354,7 @@ Ogni requisito ha una soglia, una condizione e un modo per verificarlo. Ed è co
 
 | ID | Famiglia | Requisito | Soglia e condizione | Come si verifica | Storie collegate |
 | --- | --- | --- | --- | --- | --- |
-| NFR-01 | Prestazioni | *es. Apertura della verifica nel picco* | *es. meno di 2 s per il 95% delle richieste, 75 utenti nello stesso minuto — da tarare sulla vostra stima di carico* | *Test di carico* | STU-02 |
+| NFR-01 | Prestazioni | Apertura della verifica nel picco delle 9:00 | Meno di 2 s per il 95% delle richieste, con 100 studenti che la aprono nello stesso minuto | Test di carico | STU-02 |
 | NFR-02 | Sicurezza | Tutto il traffico fra frontend e backend viaggia su HTTPS | Nessuna chiamata in chiaro, certificato valido | Ispezione del traffico / certificato | Tutte |
 | NFR-03 | Sicurezza | Il controllo dei ruoli (Direttore/Docente/Studente) è applicato lato backend su ogni endpoint | Ogni chiamata API verifica il ruolo indipendentemente dal frontend | Test con Postman usando token di ruoli diversi | Tutte |
 | NFR-04 | Usabilità | Dalla vista d'insieme il Direttore raggiunge la pagina che risolve una segnalazione (studente senza classe, materia senza docente, email non partita) con un solo click | 1 click da ogni segnalazione, senza passare da menu intermedi | Prova con un collaudatore nel ruolo di Direttore | DIR-03, DIR-04 |
@@ -361,7 +363,7 @@ Ogni requisito ha una soglia, una condizione e un modo per verificarlo. Ed è co
 | NFR-07 | Supporto | L'applicazione gira in due configurazioni separate, Development e Production, senza segreti nel codice sorgente | Segreti gestiti tramite variabili d'ambiente / secret manager | Revisione della configurazione e del repository | *Trasversale* |
 | NFR-08 | Interazione | Le API principali sono documentate con OpenAPI/Swagger e verificate con una collezione Postman | Copertura di tutte le route CRUD principali | Revisione Swagger + esecuzione della collezione Postman | Tutte |
 | NFR-09 | Conformità | Gli elenchi (studenti, materiali, voti) sono paginati e le risposte di errore hanno un formato uniforme con codici HTTP coerenti | Paginazione su ogni collezione, schema di errore unico su tutta l'API | Test automatici sulle risposte | DIR-03, STU-01, STU-03 |
-| NFR-10 | Prestazioni | La vista d'insieme del Direttore (riepilogo, segnalazioni, medie) si apre rapidamente anche con tutta la scuola caricata | Meno di 2 s per il 95% delle aperture, con 484 studenti, 21 classi e un quadrimestre di voti — *da tarare sulla stima di carico* | Test di carico su dati di prova della dimensione della scuola | DIR-03 |
+| NFR-10 | Prestazioni | La vista d'insieme del Direttore (riepilogo, segnalazioni, medie) si apre rapidamente anche con tutta la scuola caricata | Meno di 2 s per il 95% delle aperture, con 500 studenti, 21 classi e un quadrimestre di voti — *da tarare sulla stima di carico* | Test di carico su dati di prova della dimensione della scuola | DIR-03 |
 | NFR-11 | Usabilità | Le pagine dello studente sono pensate per l'iPad (touch, orientamento verticale e orizzontale) e per il PC. Materiale e voti si consultano anche da smartphone; le verifiche non sono progettate per lo smartphone | Su iPad e PC ogni pagina dello studente si usa senza zoomare né scorrere in orizzontale, e la verifica si svolge per intero con la tastiera a schermo dell'iPad. Da smartphone (360 px di larghezza) materiale e voti restano leggibili | Prova dei collaudatori del primo anno su iPad, PC e smartphone, con i browser di VIN-03 | STU-01, STU-02, STU-03 |
 
 > 💡 Le famiglie da coprire sono queste. **Prestazioni, disponibilità, scalabilità, sicurezza** e **conformità** vengono dalla lezione sui requisiti funzionali e non funzionali. **Usabilità, ambientali, supporto** e **interazione** vengono dalla lezione sul PRD. Se una famiglia resta vuota, scrivi perché non vi riguarda.
@@ -389,7 +391,13 @@ Quello che date per vero senza poterlo garantire.
 | --- | --- | --- |
 | ASS-01 | La scuola ha 500 studenti e 18 docenti | Il dimensionamento va rifatto |
 | ASS-02 | A scuola ogni studente ha un iPad a disposizione, almeno durante le verifiche | Le verifiche vanno fatte a turni sui PC del laboratorio e il picco delle 9:00 cambia |
-| ASS-03 | A casa lo studente ha un PC o uno smartphone con una connessione internet | Materiale e voti si consultano solo da scuola; serve un'alternativa per chi non ha la connessione |
+| ASS-03 | Da casa lo studente consulta materiale e voti con un PC o uno smartphone collegato a internet | Lo studente senza connessione a casa può consultare materiale e voti solo dall'iPad a scuola: va previsto il tempo per farlo durante la giornata |
+| ASS-04 | Ogni docente e ogni studente ha un indirizzo email personale valido, a cui arrivano le credenziali | Il Direttore deve consegnare le credenziali a mano; DIR-01, DIR-02 e FR-EXT-01 vanno ripensati |
+| ASS-05 | Il Wi-Fi della scuola regge 100 studenti in verifica nello stesso momento | La connessione che cade (STU-02 AC-10) diventa la regola, non l'eccezione; le verifiche vanno fatte a turni |
+| ASS-06 | C'è un solo Direttore, l'unico che gestisce account e classi | Servono più account Direttore e regole per le modifiche fatte da due persone insieme |
+| ASS-07 | L'anno scolastico è diviso in due quadrimestri, con date decise dalla scuola | Voti e medie per periodo (DOC-03 AC-12, STU-03 AC-05) vanno ripensati |
+| ASS-08 | Ogni docente carica circa 3 materiali a settimana, in media di 2 MB: con 18 docenti e 33 settimane sono circa 1.800 file e 4 GB l'anno | Lo spazio per i file va ridimensionato |
+| ASS-09 | I dati nascono in ScuolaChill: non si importa nulla da un registro esistente, a parte l'elenco degli studenti da CSV (DIR-02 AC-10) | Serve una migrazione dei dati, oggi fuori dal perimetro |
 | | | |
 
 ### Vincoli
@@ -398,9 +406,15 @@ I limiti che non potete cambiare.
 
 | ID | Vincolo | Da dove viene |
 | --- | --- | --- |
-| VIN-01 | *es. Il budget cloud è quello dei crediti studente* | *Traccia del progetto* |
+| VIN-01 | Il budget cloud è quello dei crediti studente messi a disposizione per il progetto *(importo da inserire)* | Traccia del progetto |
 | VIN-02 | A scuola gli studenti non usano lo smartphone, che resta nell'armadietto: si usano solo l'iPad e i PC del laboratorio | Regolamento della scuola |
 | VIN-03 | ScuolaChill deve funzionare su Safari per iPadOS e sui principali browser per PC (Chrome, Edge, Firefox, Safari) | Dispositivi in uso nella scuola (VIN-02) |
+| VIN-04 | Il progetto va consegnato e collaudato entro le date della traccia (vedi Milestone) | Traccia del progetto |
+| VIN-05 | Il lavoro è svolto dal team Regeestro, con le persone e le competenze che ha *(da completare: componenti e ore disponibili)* | Organizzazione del corso |
+| VIN-06 | Sono obbligatori: HTTPS, elenchi paginati, errori uniformi, documentazione delle API, ambienti Development e Production separati (NFR-02, NFR-07, NFR-08, NFR-09) | Traccia del progetto |
+| VIN-07 | ScuolaChill tratta dati personali di minori (anagrafica e voti): va rispettato il GDPR, ognuno vede solo i dati che gli servono e i dati non escono dall'uso scolastico | Normativa sulla protezione dei dati (GDPR) |
+| VIN-08 | ScuolaChill è un'applicazione web: non c'è un'app da installare | Traccia del progetto |
+| VIN-09 | L'interfaccia è solo in italiano | Scuola italiana, utenti italiani |
 | | | |
 
 ### Dipendenze
@@ -410,6 +424,11 @@ Le cose esterne senza cui non potete andare avanti.
 | ID | Dipendenza | Serve entro | Chi se ne occupa |
 | --- | --- | --- | --- |
 | DIP-01 | Account attivo sul servizio email per l'invio delle credenziali (DIR-01, DIR-02) | Prima del collaudo | *nome* |
+| DIP-02 | Account attivo sul provider cloud, con i crediti studente (VIN-01) | Prima del primo deploy | *nome* |
+| DIP-03 | Un dominio e un certificato valido per l'HTTPS (NFR-02) | Prima del collaudo | *nome* |
+| DIP-04 | Uno spazio di archiviazione per i file del materiale didattico (DOC-01, STU-01) | Prima di sviluppare DOC-01 | *nome* |
+| DIP-05 | Disponibilità dei ragazzi del primo anno per l'intervista sui requisiti impliciti e per il collaudo | Intervista prima di chiudere gli NFR; collaudo a fine progetto | *nome* |
+| DIP-06 | Conferma del docente del corso sulle proposte ancora aperte (trasferimento fra classi, creazione da CSV, modifica della verifica, connessione che cade) | Prima di scrivere i relativi FR | *nome* |
 | | | | |
 
 # Seconda parte · Il come
@@ -427,19 +446,26 @@ Da qui in poi parli al tuo docente e al tuo team, non al Direttore. Ogni scelta 
 
 | Situazione | Utenti concorrenti | Da dove viene il numero |
 | --- | --- | --- |
-| Uso normale durante la giornata | 200 | *…* |
-| Picco delle 9:00 (verifiche) | 100 | *…* |
-| Fine quadrimestre (voti) | 400 | *…* |
+| Uso normale durante la giornata | 200 | Durante le lezioni circa un terzo delle classi (7 su 21, circa 170 studenti) usa ScuolaChill sull'iPad, più i docenti e chi studia da casa |
+| Picco delle 9:00 (verifiche) | 100 | 4 classi in verifica alla stessa ora × 24 studenti ≈ 100. Sono meno utenti dell'uso normale, ma fanno tutti la stessa cosa nello stesso minuto |
+| Fine quadrimestre (voti) | 400 | La sera in cui escono i voti circa l'80% dei 500 studenti li apre nella stessa ora |
 
 ### Profilo di carico
 
 | Operazione | Frequente? | Pesante? | Critica? | Note |
 | --- | --- | --- | --- | --- |
-| Login | Ogni mese | *…* | *…* | *…* |
-| Apertura verifica |  | *…* | *…* | *…* |
-| Consegna verifica | fine dell'ora | *…* | *…* | *…* |
-| Dashboard del Direttore | *…* | *…* | *…* | *…* |
-| Caricamento materiale | *…* | *…* | *…* | *…* |
+| Login | Sì: fra le 8:10 e le 8:20 entra tutta la scuola (500 in 10 minuti, circa 1 al secondo) | Sì: il controllo della password consuma CPU | Media: senza login non si fa nulla | Una sessione lunga sull'iPad riduce i login ripetuti |
+| Apertura verifica | Sì: 100 studenti nello stesso minuto | No | Alta: la verifica inizia per tutti alla stessa ora | NFR-01 |
+| Salvataggio di una risposta | La più frequente: 100 studenti, una risposta ogni 3-5 secondi, circa 20-35 al secondo | No | Altissima: una risposta persa è un voto sbagliato | STU-02 AC-06 |
+| Consegna verifica | Picco alla chiusura: le consegne automatiche arrivano tutte nello stesso istante | Sì: parte la correzione automatica delle domande chiuse | Alta: nessuna consegna va persa | La correzione può avvenire subito dopo, senza far aspettare lo studente |
+| Consultazione e download del materiale | Sì, tutto il giorno | Il file sì, fino a 20 MB | Media | I file non devono pesare sul resto del sistema |
+| Caricamento materiale | No, pochi al giorno | Sì, fino a 20 MB | Bassa | DOC-01 AC-05, ASS-08 |
+| Consultazione dei voti | Sì, a fine quadrimestre (400 utenti) | No | Media | STU-03 |
+| Pubblicazione dei voti | No | Poco | Alta: i voti di una verifica escono tutti o nessuno | Scatena il picco di consultazioni |
+| Dashboard del Direttore | No: un solo utente, poche volte al giorno | Sì: medie su tutta la scuola | Bassa | NFR-10; i numeri possono essere aggiornati a intervalli, non a ogni apertura |
+| Creazione degli account (anche da CSV) | No: soprattutto a inizio anno | Sì: fino a 500 account e 500 email insieme | Bassa | Le email partono una alla volta, senza bloccare il Direttore (FR-EXT-01) |
+
+In sintesi: il carico è piccolo (al massimo qualche decina di richieste al secondo), ma concentrato in pochi momenti. Il punto delicato non è la velocità, è non perdere risposte e consegne durante le verifiche.
 
 <aside>
 💡

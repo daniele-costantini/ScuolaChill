@@ -69,7 +69,7 @@ Dato che sono autenticato come Docente o Studente, quando provo a creare o modif
 - Uno studente appartiene al massimo a una classe alla volta (come in DIR-02).
 - Un docente può insegnare in più classi e più materie (ARC-002).
 - Una materia senza docente è ammessa, ma compare fra le segnalazioni della vista d'insieme (DIR-03).
-- Con 484 studenti e 21 classi, una classe ha in media circa 23 studenti.
+- Con 500 studenti e 21 classi, una classe ha in media circa 24 studenti.
 
 ## Fuori perimetro di questa storia
 
