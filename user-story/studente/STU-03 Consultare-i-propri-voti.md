@@ -22,7 +22,7 @@ Come Studente, voglio consultare i miei voti raggruppati per materia, con la med
 Dato che sono autenticato come Studente, quando apro la sezione Voti, allora vedo l'elenco delle mie materie e, per ognuna, la media e il numero di voti. Le materie senza voti compaiono con la scritta "nessun voto".
 
 **AC-02 · Dettaglio di una materia**
-Dato che ho scelto una materia, quando ne consulto i voti, allora li vedo dal più recente, ciascuno con voto, data, tipo di prova (scritto, orale, pratico), docente e commento, se c'è (DOC-03 AC-05, AC-09).
+Dato che ho scelto una materia, quando ne consulto i voti, allora li vedo dal più recente, ciascuno con voto, data, tipo di prova (scritto, orale, pratico, compito), docente e commento, se c'è (DOC-03 AC-05, AC-09).
 
 **AC-03 · Solo i voti pubblicati**
 Dato che il docente sta ancora correggendo una verifica, quando apro i miei voti, allora non vedo quelli non ancora pubblicati, neanche chiamando direttamente l'API. Li vedo appena il docente li pubblica (DOC-03 AC-04).
@@ -71,7 +71,7 @@ Dato che sono autenticato come Studente, quando provo a vedere i voti di un altr
 | --- | --- |
 | Voto | Da 1 a 10, passo 0,5 *(proposta DOC-03 AC-01)*, mostrato con la virgola (es. 6,5) |
 | Data | Data della prova, formato italiano |
-| Tipo di prova | Scritto, orale o pratico |
+| Tipo di prova | Scritto, orale, pratico o compito (DOC-04) *(proposta)* |
 | Docente | Nome e cognome di chi ha assegnato il voto |
 | Commento | Se presente |
 | Classe | Indicata solo per i voti presi in una classe diversa da quella attuale (AC-13) |

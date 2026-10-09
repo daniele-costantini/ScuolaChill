@@ -17,7 +17,7 @@
 | **Prodotto** | ScuolaChill |
 | **Team** |  |
 | **Autori** | Daniele Costantini |
-| **Versione** | 0.1.5 |
+| **Versione** | 0.1.9 |
 | **Data** | 09/10/2026 |
 | **Stato** | Bozza |
 
@@ -41,6 +41,10 @@
 | 0.1.3 | 09/10/2026 | Daniele Costantini | Scritto "Perché esiste ScuolaChill", lato business e lato tecnico |
 | 0.1.4 | 09/10/2026 | Daniele Costantini | Dispositivi dello studente: iPad a scuola e PC, smartphone solo per consultare fuori da scuola (a scuola resta nell'armadietto). Aggiornati archetipo, scenari e AC di STU-01, STU-02, STU-03; aggiunti NFR-11, ASS-02, ASS-03, VIN-02, VIN-03 |
 | 0.1.5 | 09/10/2026 | Daniele Costantini | Numero di studenti allineato a 500 in tutto il documento e nelle storie; NFR-01 tarato su 100 studenti; aggiunte assunzioni ASS-04…ASS-09, vincoli VIN-04…VIN-09 e dipendenze DIP-02…DIP-06; compiti per casa fuori perimetro; scritti utenti concorrenti e profilo di carico |
+| 0.1.6 | 09/10/2026 | Daniele Costantini | Compiti per casa dentro il perimetro: nuove storie del team DOC-04 e STU-04 con user flow e scenari; aggiornati panoramica, archetipi, NFR-11, ASS-03, DIP-04, profilo di carico e permessi; aggiunta ASS-10 sullo spazio delle consegne |
+| 0.1.7 | 09/10/2026 | Daniele Costantini | I compiti diventano un avviso sul registro: il docente li segna con scadenza e link a Classroom, consegna e correzione restano su Classroom. Così non servono file né spazio in più. Riscritte DOC-04 e STU-04 (ora "Consultare i compiti per casa"); ASS-10 ora riguarda Classroom; aggiornati perimetro, NFR-11, ASS-03, DIP-04, profilo di carico e permessi |
+| 0.1.8 | 09/10/2026 | Daniele Costantini | Esclusi in modo esplicito l'account genitore, le note disciplinari e le circolari, che nessuna parte del PRD citava |
+| 0.1.9 | 09/10/2026 | Daniele Costantini | Comunicazioni e note disciplinari dentro il perimetro: nuove storie del team DIR-05, DOC-05, DOC-06 e STU-05 con user flow e scenari; aggiornati panoramica, archetipo dello studente, NFR-11, VIN-07, profilo di carico e permessi |
 
 > 💡 Il PRD cambierà durante l'anno. Ogni modifica va registrata qui, con la sua ragione. Un PRD che dice una cosa mentre il codice ne fa un'altra è peggio di nessun PRD.
 
@@ -54,7 +58,7 @@
 
 **Dal lato business.** Oggi materiale, verifiche e voti passano da fotocopie, chiavette, registri cartacei e strumenti diversi per ogni docente: il Direttore non ha una visione d'insieme e gli studenti non sanno dove trovare le cose. ScuolaChill mette la didattica di ogni giorno in un unico posto, così il Direttore governa classi e account senza chiedere a nessuno, i docenti risparmiano tempo nella preparazione e nella correzione delle verifiche, e gli studenti trovano materiale e voti appena sono disponibili.
 
-**Dal lato tecnico.** ScuolaChill è un'applicazione web, usabile dal browser sia da PC sia da iPad, con un accesso personale per ogni utente e tre ruoli (Direttore, Docente, Studente) che vedono e possono fare solo ciò che li riguarda. Il sistema conserva in modo centralizzato account, classi, materiali, verifiche e voti, corregge da solo le domande chiuse delle verifiche e si appoggia a un servizio email esterno per inviare le credenziali. È pubblicato sul cloud e raggiungibile da internet, anche da casa.
+**Dal lato tecnico.** ScuolaChill è un'applicazione web, usabile dal browser sia da PC sia da iPad, con un accesso personale per ogni utente e tre ruoli (Direttore, Docente, Studente) che vedono e possono fare solo ciò che li riguarda. Il sistema conserva in modo centralizzato account, classi, materiali, compiti, verifiche e voti, corregge da solo le domande chiuse delle verifiche e si appoggia a un servizio email esterno per inviare le credenziali. È pubblicato sul cloud e raggiungibile da internet, anche da casa.
 
 ### Cosa è incluso
 
@@ -63,6 +67,9 @@
 - Caricamento e consultazione del materiale didattico per materia e classe
 - Creazione e svolgimento delle verifiche
 - Assegnazione e consultazione dei voti, raggruppati per materia
+- Compiti per casa sul registro: il docente segna cosa fare, la scadenza e il link al compito su Classroom; lo studente li consulta
+- Comunicazioni a senso unico: il Direttore scrive a tutta la scuola, ai docenti, agli studenti o a delle classi; il docente scrive alle sue classi. Nessuna risposta, nessuna email
+- Note disciplinari: il docente le segna a uno studente o alla classe, lo studente e il Direttore le vedono. Non incidono su voti e medie
 - Vista d'insieme del Direttore su classi, docenti, studenti e andamento dei voti
 - Autenticazione e autorizzazione basata sui tre ruoli (Direttore, Docente, Studente)
 
@@ -70,10 +77,11 @@
 
 - Gestione delle assenze
 - Comunicazioni con le famiglie
+- Account per i genitori: i genitori non accedono a ScuolaChill, nemmeno in sola lettura. I ruoli restano tre (Direttore, Docente, Studente)
 - Gestione amministrativa/contabile della scuola (rette, pagamenti)
 - Orario delle lezioni (timetabling)
 - Messaggistica diretta fra utenti (chat)
-- Compiti per casa con consegna e correzione: il docente può caricare gli esercizi come materiale didattico (DOC-01), ma ScuolaChill non ne gestisce consegna, scadenza e voto
+- Consegna e correzione dei compiti per casa: avvengono su Google Classroom. ScuolaChill mostra solo il link che ti porta su Classroom
 
 > ⚠️ *Questa lista deriva da ciò che la traccia NON menziona fra le funzionalità richieste. Verificatela con il team: se avete in mente di aggiungere qualcosa di più, va spostato sopra, fra "cosa è incluso".*
 
@@ -117,8 +125,8 @@ Arricchisci gli archetipi della traccia.
 | ID | Archetipo | Contesto d'uso | Competenze digitali | Dispositivo principale | Frequenza d'uso |
 | --- | --- | --- | --- | --- | --- |
 | ARC-001 | Direttore — dirige la scuola, ha poco tempo, gli serve la visione d'insieme; è l'unico che gestisce anagrafiche e classi | Ufficio, sessioni brevi e mirate | *Ipotesi: medio-basse — serve un'interfaccia semplice, poche azioni per completare un task* | PC/laptop | Quotidiana, ma per sessioni brevi |
-| ARC-002 | Docente — insegna una o più materie in una o più classi; prepara verifiche, carica materiale, valuta gli studenti | Aula, sala professori, casa (preparazione materiale) | *Ipotesi: medie* | PC/laptop, occasionalmente tablet | Quotidiana |
-| ARC-003 | Studente — iscritto a una classe; studia sul materiale dei docenti, svolge le verifiche, tiene d'occhio i propri voti | Aula durante le verifiche, casa per lo studio | *Ipotesi: alte (nativi digitali)* | iPad a scuola (verifiche e consultazione), PC a casa; smartphone solo per consultare materiale e voti fuori da scuola | Quotidiana, più volte al giorno |
+| ARC-002 | Docente — insegna una o più materie in una o più classi; assegna compiti, prepara verifiche, carica materiale, valuta gli studenti | Aula, sala professori, casa (preparazione materiale) | *Ipotesi: medie* | PC/laptop, occasionalmente tablet | Quotidiana |
+| ARC-003 | Studente — iscritto a una classe; studia sul materiale dei docenti, segue i compiti per casa, svolge le verifiche, tiene d'occhio i propri voti | Aula durante le verifiche, casa per lo studio | *Ipotesi: alte (nativi digitali)* | iPad a scuola (verifiche e consultazione), PC a casa; smartphone fuori da scuola, solo per consultare (tutto tranne le verifiche) | Quotidiana, più volte al giorno |
 
 > ⚠️ *Le colonne "Competenze digitali" e "Frequenza d'uso" sono ipotesi di partenza: vanno confermate (o corrette) con l'intervista ai ragazzi del primo anno prevista più sotto, prima di chiudere la sezione.*
 
@@ -132,11 +140,11 @@ Arricchisci gli archetipi della traccia.
 
 ScuolaChill è il registro della scuola, ma online e tutto in un posto.
 
-Lei crea gli account di docenti e studenti e forma le classi. Poi ognuno fa la sua parte: i docenti caricano il materiale, preparano le verifiche e danno i voti; gli studenti studiano, fanno le verifiche sull' iPad e vedono subito i propri voti, materia per materia.
+Lei crea gli account di docenti e studenti e forma le classi. Poi ognuno fa la sua parte: i docenti caricano il materiale, assegnano i compiti, preparano le verifiche e danno i voti; gli studenti studiano, trovano i compiti da fare, fanno le verifiche sull'iPad e vedono subito i propri voti, materia per materia. Sul registro trovano anche le comunicazioni della scuola e le note disciplinari.
 
 E lei, da una sola pagina, vede come vanno tutte le classi, senza dover chiedere a nessuno.
 
-Assenze, comunicazioni con le famiglie e orario restano fuori: ci concentriamo sulla didattica di ogni giorno.
+Assenze, orario, comunicazioni con le famiglie e account per i genitori restano fuori: ci concentriamo sulla didattica di ogni giorno.
 
 ### User flow e scenari
 
@@ -193,6 +201,23 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 - *Nessun docente per una materia:* il Direttore salva comunque la classe; la materia resta evidenziata e compare fra le segnalazioni della vista d'insieme (DIR-03).
 - *Classe creata per errore:* il Direttore la elimina; se però contiene già studenti o voti, il sistema glielo impedisce e spiega il motivo.
 
+**Storia:** DIR-05 Pubblicare comunicazioni *(storia aggiunta dal team)*
+
+**User flow**
+
+1. Il Direttore accede a ScuolaChill
+2. Apre la sezione Comunicazioni e sceglie "Nuova comunicazione"
+3. Scrive titolo e testo e sceglie i destinatari: tutta la scuola, i docenti, gli studenti o alcune classi
+4. Se serve, allega la circolare o incolla un link e segna la comunicazione "in evidenza"
+5. Pubblica: i destinatari la trovano subito, segnata "nuova"
+
+**Scenario principale.** Lunedì il Direttore pubblica a tutta la scuola "Venerdì uscita anticipata alle 11:20 per assemblea", in evidenza fino a venerdì. Docenti e studenti la trovano in cima alla sezione Comunicazioni appena entrano.
+
+**Scenari alternativi.**
+- *Solo ai docenti:* il Direttore convoca il collegio docenti scrivendo solo ai docenti; gli studenti non la vedono.
+- *Errore nella data:* il Direttore corregge "venerdì" in "giovedì"; tutti vedono la comunicazione segnata come "modificata".
+- *Comunicazione scaduta:* dopo venerdì l'avviso esce dall'evidenza e passa fra le comunicazioni vecchie.
+
 **Storia:** DOC-01 Caricare materiale didattico
 
 **User flow**
@@ -244,6 +269,53 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 - *Studente assente:* uno studente non ha svolto la verifica e risulta "non svolta". La recupera su carta la settimana dopo e la docente gli inserisce il voto a mano.
 - *Voto sbagliato:* la docente si accorge di aver dato 5 invece di 6,5. Lo corregge; lo studente vede il voto nuovo e il sistema tiene traccia del cambio.
 
+**Storia:** DOC-04 Assegnare i compiti per casa *(storia aggiunta dal team)*
+
+**User flow**
+
+1. Il Docente accede a ScuolaChill
+2. Apre una sua classe e materia e sceglie "Segna compito"
+3. Scrive titolo e descrizione, sceglie la scadenza e, se il compito si consegna su Classroom, incolla il link
+4. Salva: gli studenti vedono il compito subito
+
+**Scenario principale.** Lunedì la prof.ssa Neri segna per la 2B "Esercizi da 4 a 10 di pagina 132", per giovedì, e incolla il link al compito su Classroom, dove gli studenti caricheranno la foto del quaderno. Seleziona anche la 2C, dove insegna la stessa materia. Gli studenti delle due classi trovano il compito sul registro con la scadenza e il link.
+
+**Scenari alternativi.**
+- *Compito sul libro:* per Inglese la docente segna "Leggere pagina 40" senza link: si corregge in classe, non c'è niente da consegnare.
+- *Scadenza spostata:* metà classe è in uscita didattica. La docente sposta la scadenza a venerdì e gli studenti vedono il compito segnato come "modificato".
+- *Compito valutato:* la docente corregge un tema su Classroom e inserisce il voto su ScuolaChill come prova di tipo "compito" (DOC-03) *(proposta, da confermare)*.
+
+**Storia:** DOC-05 Comunicazioni alle proprie classi *(storia aggiunta dal team)*
+
+**User flow**
+
+1. Il Docente accede a ScuolaChill
+2. Apre la sezione Comunicazioni e legge quelle nuove del Direttore
+3. Sceglie "Nuova comunicazione", scrive titolo e testo e sceglie una o più delle sue classi
+4. Pubblica: gli studenti e i docenti di quelle classi la trovano subito
+
+**Scenario principale.** Martedì la prof.ssa Neri scrive alla 2B e alla 2C: "Giovedì lezione in laboratorio di informatica". Gli studenti la vedono segnata "nuova" la mattina dopo.
+
+**Scenari alternativi.**
+- *Classe non sua:* la docente prova a scrivere alla 3A, dove non insegna. La classe non compare fra quelle che può scegliere.
+- *Comunicazione di un collega:* il docente di Inglese ha già avvisato la 2B dell'uscita didattica. La prof.ssa Neri lo vede fra le comunicazioni della classe e non lo ripete *(proposta)*.
+
+**Storia:** DOC-06 Assegnare note disciplinari *(storia aggiunta dal team)*
+
+**User flow**
+
+1. Il Docente accede a ScuolaChill
+2. Apre una sua classe e sceglie "Nuova nota"
+3. Sceglie lo studente (o tutta la classe), la data e scrive il motivo
+4. Salva: lo studente e il Direttore vedono la nota
+
+**Scenario principale.** Durante la lezione Luca Galli usa più volte l'iPad per giocare. La prof.ssa Neri segna una nota: "Usa l'iPad per giochi durante la lezione, dopo due richiami". Luca la trova nella sezione Note; il Direttore la vede nell'elenco delle note della scuola.
+
+**Scenari alternativi.**
+- *Nota alla classe:* la 2B fa confusione durante il cambio d'ora. La docente segna una nota alla classe e ogni studente la trova fra le sue.
+- *Nota sbagliata:* la docente ha scelto lo studente sbagliato. Annulla la nota indicando il motivo e la segna allo studente giusto; la prima resta nello storico come "annullata" *(proposta)*.
+- *Curiosità sulle note di un compagno:* uno studente prova ad aprire la nota di Luca. Il sistema rifiuta la richiesta.
+
 **Storia:** STU-01 Consultare il materiale didattico
 
 **User flow**
@@ -293,6 +365,38 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 - *Verifica non svolta:* Luca era assente il giorno della verifica di Inglese. La vede segnata come "non svolta", senza effetto sulla media, finché non arriva il voto del recupero.
 - *Curiosità sui voti di un compagno:* Luca prova a cambiare l'ID nell'indirizzo della pagina per vedere i voti di un compagno. Il sistema rifiuta la richiesta.
 
+**Storia:** STU-04 Consultare i compiti per casa *(storia aggiunta dal team)*
+
+**User flow**
+
+1. Lo Studente accede a ScuolaChill, dall'iPad a scuola o dal PC o dal telefono a casa
+2. Apre la sezione Compiti e vede quelli da fare, dal più vicino alla scadenza
+3. Apre il compito e legge cosa deve fare
+4. Se c'è il link, lo apre e consegna su Classroom
+
+**Scenario principale.** Mercoledì pomeriggio Luca Galli apre ScuolaChill dal PC di casa. Nella sezione Compiti vede in evidenza Matematica "per domani": esercizi da 4 a 10 di pagina 132. Li fa sul quaderno, apre il link e carica la foto su Classroom.
+
+**Scenari alternativi.**
+- *Compito modificato:* la docente sposta la scadenza a venerdì. Luca vede il compito segnato come "modificato" con la nuova data.
+- *Compito senza link:* il compito di Inglese è solo da leggere. Luca lo vede con la scadenza, senza niente da consegnare.
+- *Studente non ancora in una classe:* a inizio anno la sezione Compiti mostra un messaggio che spiega che Luca non è ancora in una classe, non un errore.
+
+**Storia:** STU-05 Leggere comunicazioni e note disciplinari *(storia aggiunta dal team)*
+
+**User flow**
+
+1. Lo Studente accede a ScuolaChill
+2. Apre la sezione Comunicazioni: in cima trova quelle in evidenza e quelle nuove
+3. Apre una comunicazione e, se c'è, l'allegato o il link
+4. Nella sezione Note vede le sue note e quelle date alla classe
+
+**Scenario principale.** Lunedì mattina Luca Galli apre ScuolaChill dall'iPad e vede due comunicazioni nuove: l'uscita anticipata di venerdì, in evidenza, e il laboratorio di giovedì della prof.ssa Neri. Le apre e il segno "nuova" sparisce.
+
+**Scenari alternativi.**
+- *Nota ricevuta:* Luca trova una nota nella sezione Note, con data, docente e motivo. Non può rispondere.
+- *Nota annullata:* la docente annulla una nota data per errore. Luca la vede segnata come "annullata".
+- *Studente non ancora in una classe:* a inizio anno Luca vede comunque le comunicazioni a tutta la scuola e a tutti gli studenti.
+
 ---
 
 ## Requisiti funzionali
@@ -305,12 +409,18 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 | DIR-02 | Creare account studente | AC-01…AC-03 creazione, email unica, campi obbligatori; AC-04 classe facoltativa alla creazione; AC-05/AC-06 stato "in attesa di attivazione" e cambio password al primo accesso; AC-07 invio email fallito; AC-08 disattivazione; AC-09 solo il Direttore può creare studenti; AC-10 creazione da CSV *(da confermare)*; AC-11 modifica dei dati; AC-12 riattivazione; AC-13 password dimenticata *(proposta)* (dettaglio in `user-story/DIR-02`) | Collegata a FR-EXT-01 (fallimento email) e a DIR-04 (composizione e trasferimento fra classi). Stessi stati account di DIR-01 |
 | DIR-03 | Vedere tutto | AC-01 riepilogo in prima pagina; AC-02 segnalazioni da sistemare; AC-03…AC-06 elenco e dettaglio di classi, studenti e docenti; AC-07 andamento dei voti per classe, materia e periodo; AC-08 ricerca; AC-09 elenchi paginati e filtrabili; AC-10 sola lettura; AC-11 nessun dato; AC-12 solo il Direttore (dettaglio in `user-story/DIR-03`) | Le medie dipendono dalla decisione sulla scala dei voti (DOC-03). Collegata a NFR-04 (usabilità) e NFR-10 (prestazioni) |
 | DIR-04 | Creare classi e comporle | AC-01/AC-02 creazione classe con nome unico per anno scolastico; AC-03/AC-04 aggiunta studenti, uno studente in una sola classe; AC-05…AC-07 materie con un docente abilitato per materia; AC-08 trasferimento *(proposta)*; AC-09 rimozione studente; AC-10 eliminazione solo di classi vuote; AC-11 riepilogo della classe; AC-12 solo il Direttore (dettaglio in `user-story/DIR-04`) | Collegata alla decisione aperta sul trasferimento fra classi: proposta in AC-08, da confermare e poi scrivere come FR |
+| DIR-05 | Pubblicare comunicazioni *(storia aggiunta dal team)* | AC-01 pubblicazione; AC-02 destinatari (scuola, docenti, studenti, classi); AC-03 campi obbligatori; AC-04 allegato PDF o link *(proposta)*; AC-05 in evidenza; AC-06 scadenza *(proposta)*; AC-07 modifica; AC-08 eliminazione; AC-09 letture *(proposta)*; AC-10 elenco di tutte le comunicazioni; AC-11 nessuna risposta; AC-12 solo il Direttore scrive a tutta la scuola (dettaglio in `user-story/direttore/DIR-05`) | Non c'è nella traccia: aggiunta perché le comunicazioni sono dentro il perimetro. Nessuna email: niente costi né dipendenze in più. Collegata a DOC-05 e STU-05 |
 | DOC-01 | Caricare materiale didattico | AC-01 caricamento con titolo, classe e materia; AC-02 solo le proprie classi e materie; AC-03 campi obbligatori; AC-04 formati ammessi; AC-05 dimensione massima *(proposta 20 MB)*; AC-06 link esterno *(proposta)*; AC-07 stessa materia in più classi; AC-08 modifica; AC-09 eliminazione; AC-10 elenco paginato; AC-11 caricamento interrotto; AC-12 materiale di chi non insegna più la materia *(proposta)*; AC-13 solo il docente della classe e materia (dettaglio in `user-story/docente/DOC-01`) | Il materiale appartiene alla coppia classe/materia, non al docente. Collegata a DIR-04 e STU-01. Da chiarire se il Direttore può caricare materiale |
 | DOC-02 | Creare le proprie verifiche | AC-01 creazione in bozza; AC-02 solo le proprie classi e materie; AC-03/AC-04 tipi di domanda (multipla, vero/falso, aperta) con punteggio e risposta corretta; AC-05 ordine delle domande; AC-06 finestra di svolgimento e durata; AC-07 pubblicazione; AC-08 anteprima; AC-09 modifica prima dell'apertura; AC-10 modifica dopo l'apertura *(proposta)*; AC-11 duplicazione; AC-12 eliminazione; AC-13 elenco paginato; AC-14 correzione automatica delle domande chiuse; AC-15 solo il docente della classe e materia (dettaglio in `user-story/docente/DOC-02`) | Collegata alla decisione aperta sulla modifica dopo lo svolgimento: proposta in AC-10, da confermare e poi scrivere come FR. Il punteggio non è il voto (DOC-03) |
 | DOC-03 | Assegnare i voti | AC-01 scala da 1 a 10 con passo 0,5 *(proposta)*; AC-02 correzione della verifica online; AC-03 voto proposto dal punteggio *(proposta)*; AC-04 pubblicazione dei voti di una verifica; AC-05 voto per prove fuori da ScuolaChill (scritto, orale, pratico); AC-06 voti a tutta la classe; AC-07 solo le proprie classi e materie; AC-08 verifica non svolta; AC-09 commento; AC-10 modifica con storico; AC-11 eliminazione con storico; AC-12 voti per quadrimestre *(proposta)*; AC-13 registro della classe; AC-14 solo il docente della classe e materia (dettaglio in `user-story/docente/DOC-03`) | Collegata alla decisione aperta sulla scala dei voti: proposta in AC-01, da confermare e poi scrivere come FR. Le medie di DIR-03 e STU-03 dipendono da qui |
+| DOC-04 | Assegnare i compiti per casa *(storia aggiunta dal team)* | AC-01 compito con titolo, classe, materia e scadenza; AC-02 solo le proprie classi e materie; AC-03 campi obbligatori; AC-04 link al compito su Classroom; AC-05 nessuna consegna su ScuolaChill; AC-06 stesso compito in più classi; AC-07 modifica; AC-08 eliminazione; AC-09 elenco paginato; AC-10 voto del compito *(proposta)*; AC-11 compiti di chi non insegna più la materia; AC-12 solo il docente della classe e materia (dettaglio in `user-story/docente/DOC-04`) | Non c'è nella traccia: aggiunta perché i compiti sono dentro il perimetro. Il registro avvisa, la consegna avviene su Classroom (ASS-10). Collegata a DOC-03 e STU-04 |
+| DOC-05 | Comunicazioni alle proprie classi *(storia aggiunta dal team)* | AC-01 pubblicazione alle proprie classi; AC-02 solo le proprie classi; AC-03 campi obbligatori; AC-04 link; AC-05 modifica ed eliminazione; AC-06 comunicazioni ricevute; AC-07 comunicazioni inviate; AC-08 nessuna risposta; AC-09 solo i docenti della classe (dettaglio in `user-story/docente/DOC-05`) | Non c'è nella traccia. Stesse regole di DIR-05. Collegata a STU-05 |
+| DOC-06 | Assegnare note disciplinari *(storia aggiunta dal team)* | AC-01 nota a uno studente; AC-02 solo gli studenti delle proprie classi; AC-03 campi obbligatori; AC-04 nota alla classe; AC-05 chi vede la nota *(proposta)*; AC-06 modifica con storico; AC-07 annullamento *(proposta)*; AC-08 il Direttore vede e annulla; AC-09 note della classe; AC-10 nessun effetto su voti e medie; AC-11 solo i docenti scrivono note (dettaglio in `user-story/docente/DOC-06`) | Non c'è nella traccia: aggiunta perché le note sono dentro il perimetro. Dati delicati di minori (VIN-07). Collegata a DOC-03 (storico) e STU-05 |
 | STU-01 | Consultare il materiale didattico | AC-01 materiale diviso per materia; AC-02 elenco paginato dal più recente; AC-03 apertura di un file; AC-04 apertura di un link; AC-05 solo il materiale della propria classe; AC-06 materiale nuovo *(proposta)*; AC-07 ricerca; AC-08 usabile da iPad, PC e smartphone; AC-09 nessun materiale; AC-10 studente senza classe; AC-11 materiale modificato o eliminato; AC-12 file non disponibile; AC-13 cambio di classe *(proposta)*; AC-14 sola lettura (dettaglio in `user-story/studente/STU-01`) | Collegata a DOC-01 (caricamento) e DIR-04 (trasferimento fra classi). Collegata a NFR-11 (dispositivi) |
 | STU-02 | Svolgere una verifica | AC-01 elenco delle verifiche; AC-02 apertura solo nella finestra; AC-03 inizio e tempo disponibile; AC-04 tempo rimanente calcolato dal server; AC-05 risposte e navigazione fra le domande; AC-06 salvataggio automatico; AC-07 consegna con conferma; AC-08 consegna automatica allo scadere; AC-09 un solo tentativo; AC-10 connessione che cade *(proposta)*; AC-11 tempo scaduto offline *(proposta)*; AC-12 risposte corrette mai visibili durante la verifica; AC-13 dopo la consegna *(proposta)*; AC-14 verifica non svolta; AC-15 verifica modificata dal docente durante lo svolgimento; AC-16 usabile da iPad e PC; AC-17 solo le verifiche della propria classe (dettaglio in `user-story/studente/STU-02`) | Collegata alla decisione aperta sulla connessione che cade: proposta in AC-10 e AC-11, da confermare e poi scrivere come FR. Collegata a DOC-02 (AC-10, AC-14, AC-15), NFR-01 e NFR-11 |
 | STU-03 | Consultare i propri voti | AC-01 voti raggruppati per materia; AC-02 dettaglio di una materia; AC-03 solo i voti pubblicati; AC-04 media della materia; AC-05 voti per quadrimestre; AC-06 voto insufficiente in evidenza; AC-07 voto nuovo *(proposta)*; AC-08 voto di una verifica online; AC-09 verifica non svolta; AC-10 voto modificato o eliminato; AC-11 riepilogo generale *(proposta)*; AC-12 nessun voto; AC-13 cambio di classe; AC-14 usabile da iPad, PC e smartphone; AC-15 solo i propri voti (dettaglio in `user-story/studente/STU-03`) | Voti e medie dipendono dalla decisione sulla scala dei voti (DOC-03 AC-01). Stesse regole di calcolo delle medie di DIR-03. Collegata a NFR-11 |
+| STU-04 | Consultare i compiti per casa *(storia aggiunta dal team)* | AC-01 elenco dalla scadenza più vicina; AC-02 dettaglio; AC-03 apertura del link; AC-04 scadenza vicina in evidenza; AC-05 compiti scaduti; AC-06 compito nuovo *(proposta)*; AC-07 compito modificato o eliminato; AC-08 nessun compito; AC-09 studente senza classe; AC-10 usabile da iPad, PC e smartphone; AC-11 solo i compiti della propria classe; AC-12 sola lettura (dettaglio in `user-story/studente/STU-04`) | Non c'è nella traccia: aggiunta perché i compiti sono dentro il perimetro. Collegata a DOC-04 e NFR-11 |
+| STU-05 | Leggere comunicazioni e note disciplinari *(storia aggiunta dal team)* | AC-01 elenco delle comunicazioni; AC-02 dettaglio; AC-03 comunicazione nuova; AC-04 comunicazione modificata o eliminata; AC-05 le proprie note; AC-06 nota modificata o annullata; AC-07 solo le proprie note; AC-08 nessuna comunicazione o nota; AC-09 studente senza classe; AC-10 cambio di classe *(proposta)*; AC-11 usabile da iPad, PC e smartphone; AC-12 sola lettura (dettaglio in `user-story/studente/STU-05`) | Non c'è nella traccia. Collegata a DIR-05, DOC-05, DOC-06 e NFR-11 |
 
 > 💡 Gli AC completi (già scritti nella traccia) restano nel documento della traccia stessa come riferimento; qui riportate solo quelli che il team **aggiunge**.
 
@@ -364,7 +474,7 @@ Ogni requisito ha una soglia, una condizione e un modo per verificarlo. Ed è co
 | NFR-08 | Interazione | Le API principali sono documentate con OpenAPI/Swagger e verificate con una collezione Postman | Copertura di tutte le route CRUD principali | Revisione Swagger + esecuzione della collezione Postman | Tutte |
 | NFR-09 | Conformità | Gli elenchi (studenti, materiali, voti) sono paginati e le risposte di errore hanno un formato uniforme con codici HTTP coerenti | Paginazione su ogni collezione, schema di errore unico su tutta l'API | Test automatici sulle risposte | DIR-03, STU-01, STU-03 |
 | NFR-10 | Prestazioni | La vista d'insieme del Direttore (riepilogo, segnalazioni, medie) si apre rapidamente anche con tutta la scuola caricata | Meno di 2 s per il 95% delle aperture, con 500 studenti, 21 classi e un quadrimestre di voti — *da tarare sulla stima di carico* | Test di carico su dati di prova della dimensione della scuola | DIR-03 |
-| NFR-11 | Usabilità | Le pagine dello studente sono pensate per l'iPad (touch, orientamento verticale e orizzontale) e per il PC. Materiale e voti si consultano anche da smartphone; le verifiche non sono progettate per lo smartphone | Su iPad e PC ogni pagina dello studente si usa senza zoomare né scorrere in orizzontale, e la verifica si svolge per intero con la tastiera a schermo dell'iPad. Da smartphone (360 px di larghezza) materiale e voti restano leggibili | Prova dei collaudatori del primo anno su iPad, PC e smartphone, con i browser di VIN-03 | STU-01, STU-02, STU-03 |
+| NFR-11 | Usabilità | Le pagine dello studente sono pensate per l'iPad (touch, orientamento verticale e orizzontale) e per il PC. Materiale, voti, compiti, comunicazioni e note si consultano anche da smartphone; le verifiche non sono progettate per lo smartphone | Su iPad e PC ogni pagina dello studente si usa senza zoomare né scorrere in orizzontale, e la verifica si svolge per intero con la tastiera a schermo dell'iPad. Da smartphone (360 px di larghezza) materiale, voti, compiti, comunicazioni e note restano leggibili | Prova dei collaudatori del primo anno su iPad, PC e smartphone, con i browser di VIN-03 | STU-01, STU-02, STU-03, STU-04, STU-05 |
 
 > 💡 Le famiglie da coprire sono queste. **Prestazioni, disponibilità, scalabilità, sicurezza** e **conformità** vengono dalla lezione sui requisiti funzionali e non funzionali. **Usabilità, ambientali, supporto** e **interazione** vengono dalla lezione sul PRD. Se una famiglia resta vuota, scrivi perché non vi riguarda.
 >
@@ -391,13 +501,14 @@ Quello che date per vero senza poterlo garantire.
 | --- | --- | --- |
 | ASS-01 | La scuola ha 500 studenti e 18 docenti | Il dimensionamento va rifatto |
 | ASS-02 | A scuola ogni studente ha un iPad a disposizione, almeno durante le verifiche | Le verifiche vanno fatte a turni sui PC del laboratorio e il picco delle 9:00 cambia |
-| ASS-03 | Da casa lo studente consulta materiale e voti con un PC o uno smartphone collegato a internet | Lo studente senza connessione a casa può consultare materiale e voti solo dall'iPad a scuola: va previsto il tempo per farlo durante la giornata |
+| ASS-03 | Da casa lo studente consulta materiale, voti e compiti con un PC o uno smartphone collegato a internet | Lo studente senza connessione a casa può consultare materiale, voti e compiti solo dall'iPad a scuola: va previsto il tempo per farlo durante la giornata |
 | ASS-04 | Ogni docente e ogni studente ha un indirizzo email personale valido, a cui arrivano le credenziali | Il Direttore deve consegnare le credenziali a mano; DIR-01, DIR-02 e FR-EXT-01 vanno ripensati |
 | ASS-05 | Il Wi-Fi della scuola regge 100 studenti in verifica nello stesso momento | La connessione che cade (STU-02 AC-10) diventa la regola, non l'eccezione; le verifiche vanno fatte a turni |
 | ASS-06 | C'è un solo Direttore, l'unico che gestisce account e classi | Servono più account Direttore e regole per le modifiche fatte da due persone insieme |
 | ASS-07 | L'anno scolastico è diviso in due quadrimestri, con date decise dalla scuola | Voti e medie per periodo (DOC-03 AC-12, STU-03 AC-05) vanno ripensati |
 | ASS-08 | Ogni docente carica circa 3 materiali a settimana, in media di 2 MB: con 18 docenti e 33 settimane sono circa 1.800 file e 4 GB l'anno | Lo spazio per i file va ridimensionato |
 | ASS-09 | I dati nascono in ScuolaChill: non si importa nulla da un registro esistente, a parte l'elenco degli studenti da CSV (DIR-02 AC-10) | Serve una migrazione dei dati, oggi fuori dal perimetro |
+| ASS-10 | La scuola usa già Google Classroom per la consegna e la correzione dei compiti, e ogni studente ha un account | Consegna e correzione dei compiti non hanno un posto: vanno fatte in classe, oppure dentro ScuolaChill, con spazio per i file e costi in più |
 | | | |
 
 ### Vincoli
@@ -412,7 +523,7 @@ I limiti che non potete cambiare.
 | VIN-04 | Il progetto va consegnato e collaudato entro le date della traccia (vedi Milestone) | Traccia del progetto |
 | VIN-05 | Il lavoro è svolto dal team Regeestro, con le persone e le competenze che ha *(da completare: componenti e ore disponibili)* | Organizzazione del corso |
 | VIN-06 | Sono obbligatori: HTTPS, elenchi paginati, errori uniformi, documentazione delle API, ambienti Development e Production separati (NFR-02, NFR-07, NFR-08, NFR-09) | Traccia del progetto |
-| VIN-07 | ScuolaChill tratta dati personali di minori (anagrafica e voti): va rispettato il GDPR, ognuno vede solo i dati che gli servono e i dati non escono dall'uso scolastico | Normativa sulla protezione dei dati (GDPR) |
+| VIN-07 | ScuolaChill tratta dati personali di minori (anagrafica, voti e note disciplinari): va rispettato il GDPR, ognuno vede solo i dati che gli servono e i dati non escono dall'uso scolastico | Normativa sulla protezione dei dati (GDPR) |
 | VIN-08 | ScuolaChill è un'applicazione web: non c'è un'app da installare | Traccia del progetto |
 | VIN-09 | L'interfaccia è solo in italiano | Scuola italiana, utenti italiani |
 | | | |
@@ -448,7 +559,7 @@ Da qui in poi parli al tuo docente e al tuo team, non al Direttore. Ogni scelta 
 | --- | --- | --- |
 | Uso normale durante la giornata | 200 | Durante le lezioni circa un terzo delle classi (7 su 21, circa 170 studenti) usa ScuolaChill sull'iPad, più i docenti e chi studia da casa |
 | Picco delle 9:00 (verifiche) | 100 | 4 classi in verifica alla stessa ora × 24 studenti ≈ 100. Sono meno utenti dell'uso normale, ma fanno tutti la stessa cosa nello stesso minuto |
-| Fine quadrimestre (voti) | 400 | La sera in cui escono i voti circa l'80% dei 500 studenti li apre nella stessa ora |
+| Fine quadrimestre (voti) | 400 | La mattina o pomeriggio circa l'80% accede a ScuolaChill per la pagella |
 
 ### Profilo di carico
 
@@ -460,6 +571,9 @@ Da qui in poi parli al tuo docente e al tuo team, non al Direttore. Ogni scelta 
 | Consegna verifica | Picco alla chiusura: le consegne automatiche arrivano tutte nello stesso istante | Sì: parte la correzione automatica delle domande chiuse | Alta: nessuna consegna va persa | La correzione può avvenire subito dopo, senza far aspettare lo studente |
 | Consultazione e download del materiale | Sì, tutto il giorno | Il file sì, fino a 20 MB | Media | I file non devono pesare sul resto del sistema |
 | Caricamento materiale | No, pochi al giorno | Sì, fino a 20 MB | Bassa | DOC-01 AC-05, ASS-08 |
+| Consultazione dei compiti | Sì, soprattutto il pomeriggio e la sera da casa | No: solo testo e link | Bassa | STU-04; nessun file, la consegna è su Classroom |
+| Lettura delle comunicazioni | Sì: all'inizio della giornata quasi tutti la aprono (fino a 500 in 10 minuti, insieme al login) | No: solo testo, allegati rari | Bassa | STU-05, DIR-05 |
+| Note disciplinari | No: poche a settimana | No | Media: dati delicati, vanno protetti più che velocizzati | DOC-06, VIN-07 |
 | Consultazione dei voti | Sì, a fine quadrimestre (400 utenti) | No | Media | STU-03 |
 | Pubblicazione dei voti | No | Poco | Alta: i voti di una verifica escono tutti o nessuno | Scatena il picco di consultazioni |
 | Dashboard del Direttore | No: un solo utente, poche volte al giorno | Sì: medie su tutta la scuola | Bassa | NFR-10; i numeri possono essere aggiornati a intervalli, non a ogni apertura |
@@ -582,6 +696,14 @@ I numeri di qui devono essere coerenti con la scuola che avete immaginato e con 
 | Vedere la vista d'insieme della scuola | ✅ | ❌ | ❌ |
 | Caricare materiale | ✅ | ✅ | ❌ |
 | Vedere i voti di uno studente | ✅ | ✅ | ✅ |
+| Segnare, modificare ed eliminare i compiti | ❌ | ✅ | ❌ |
+| Vedere i compiti di una classe (lo studente solo della propria) | ✅ | ✅ | ✅ |
+| Pubblicare comunicazioni a tutta la scuola, ai docenti o agli studenti | ✅ | ❌ | ❌ |
+| Pubblicare comunicazioni alle proprie classi | ✅ | ✅ | ❌ |
+| Leggere le comunicazioni ricevute | ✅ | ✅ | ✅ |
+| Segnare e modificare una nota disciplinare | ❌ | ✅ | ❌ |
+| Annullare una nota disciplinare | ✅ | ✅ (solo le proprie) | ❌ |
+| Vedere le note disciplinari | ✅ (tutte) | ✅ (delle proprie classi) | ✅ (solo le proprie) |
 | *…* |  |  |  |
 
 *Spiega dove viene fatto rispettare questo controllo. Ricorda che il frontend non basta mai.*

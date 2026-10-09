@@ -69,7 +69,7 @@ Dato che sono autenticato come Studente, o come Docente su una classe o materia 
 | Studente | Sì | Iscritto alla classe del docente |
 | Classe e materia | Sì | Una coppia classe/materia assegnata al docente |
 | Voto | Sì | Da 1 a 10, passo 0,5 *(proposta)* |
-| Tipo di prova | Sì | Scritto, orale o pratico |
+| Tipo di prova | Sì | Scritto, orale, pratico o compito (DOC-04) *(proposta)* |
 | Data | Sì | Non nel futuro, dentro l'anno scolastico |
 | Verifica | No | Collegamento alla verifica di DOC-02, se il voto viene da lì |
 | Commento | No | Testo, max 500 caratteri |
