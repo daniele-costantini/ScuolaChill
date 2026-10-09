@@ -15,10 +15,10 @@
 | | |
 | --- | --- |
 | **Prodotto** | ScuolaChill |
-| **Team** | Regeestro |
+| **Team** |  |
 | **Autori** | Daniele Costantini |
-| **Versione** | 0.0.9 |
-| **Data** | 23/09/2026 |
+| **Versione** | 0.1.4 |
+| **Data** | 09/10/2026 |
 | **Stato** | Bozza |
 
 ### Storico delle versioni
@@ -35,6 +35,11 @@
 | 0.0.7 | 30/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DOC-01; user flow e scenari di DOC-01 |
 | 0.0.8 | 30/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DOC-02, con la proposta sulla modifica di una verifica dopo lo svolgimento (AC-10); user flow e scenari di DOC-02 |
 | 0.0.9 | 30/09/2026 | Daniele Costantini | Aggiunti gli AC del team per DOC-03, con la proposta sulla scala dei voti (AC-01); user flow e scenari di DOC-03 |
+| 0.1.0 | 02/10/2026 | Daniele Costantini | Aggiunti gli AC del team per STU-01; user flow e scenari di STU-01 |
+| 0.1.1 | 02/10/2026 | Daniele Costantini | Aggiunti gli AC del team per STU-02, con la proposta sulla connessione che cade (AC-10, AC-11); user flow e scenari di STU-02 |
+| 0.1.2 | 02/10/2026 | Daniele Costantini | Aggiunti gli AC del team per STU-03; user flow e scenari di STU-03 |
+| 0.1.3 | 09/10/2026 | Daniele Costantini | Scritto "Perché esiste ScuolaChill", lato business e lato tecnico |
+| 0.1.4 | 09/10/2026 | Daniele Costantini | Dispositivi dello studente: iPad a scuola e PC, smartphone solo per consultare fuori da scuola (a scuola resta nell'armadietto). Aggiornati archetipo, scenari e AC di STU-01, STU-02, STU-03; aggiunti NFR-11, ASS-02, ASS-03, VIN-02, VIN-03 |
 
 > 💡 Il PRD cambierà durante l'anno. Ogni modifica va registrata qui, con la sua ragione. Un PRD che dice una cosa mentre il codice ne fa un'altra è peggio di nessun PRD.
 
@@ -46,9 +51,9 @@
 
 ### Perché esiste ScuolaChill
 
-**Dal lato business.** *Quale problema risolve, e per chi. Due o tre frasi.*
+**Dal lato business.** Oggi materiale, verifiche e voti passano da fotocopie, chiavette, registri cartacei e strumenti diversi per ogni docente: il Direttore non ha una visione d'insieme e gli studenti non sanno dove trovare le cose. ScuolaChill mette la didattica di ogni giorno in un unico posto, così il Direttore governa classi e account senza chiedere a nessuno, i docenti risparmiano tempo nella preparazione e nella correzione delle verifiche, e gli studenti trovano materiale e voti appena sono disponibili.
 
-**Dal lato tecnico.** *Cosa copre il sistema, in grandi linee. Due o tre frasi.*
+**Dal lato tecnico.** ScuolaChill è un'applicazione web, usabile dal browser sia da PC sia da iPad, con un accesso personale per ogni utente e tre ruoli (Direttore, Docente, Studente) che vedono e possono fare solo ciò che li riguarda. Il sistema conserva in modo centralizzato account, classi, materiali, verifiche e voti, corregge da solo le domande chiuse delle verifiche e si appoggia a un servizio email esterno per inviare le credenziali. È pubblicato sul cloud e raggiungibile da internet, anche da casa.
 
 ### Cosa è incluso
 
@@ -80,7 +85,7 @@
 |---|---|---|---|
 | Direttore | Dirige la scuola: crea account e classi, supervisiona tutto | Una vista d'insieme affidabile e rapida, senza dover entrare in ogni singola pagina | Intervista, collaudo finale |
 | Docenti | Carica materiale, crea verifiche, assegna voti sulle proprie classi/materie | Uno strumento semplice da usare ogni giorno, con dati corretti sui propri studenti | Collaudo |
-| Studenti | Consulta materiale, svolge verifiche, controlla i propri voti | Un'app semplice, veloce, usabile anche da smartphone | Collaudo diretto (ragazzi del primo anno) |
+| Studenti | Consulta materiale, svolge verifiche, controlla i propri voti | Un'app semplice e veloce, comoda sull'iPad in classe e sul PC a casa | Collaudo diretto (ragazzi del primo anno) |
 | Docente del corso | Valida il PRD | Che le scelte tecniche e di prodotto siano motivate e coerenti | Presentazione e domande |
 | Collaudatori del primo anno | Usano ScuolaChill come utenti reali (impersonano Direttore, docente, studenti) | Un prodotto che funzioni davvero, non solo in demo | Intervista, collaudo |
 | *Altri? (es. sponsor del progetto, docente/i di riferimento)* | *…* | *…* | *…* |
@@ -97,11 +102,11 @@
 
 | | Valore |
 | --- | --- |
-| Numero di studenti | 484 |
+| Numero di studenti | 500 |
 | Numero di docenti | 18 |
 | Numero di classi | 21 |
 | Orario scolastico | Lunedì, Mercoledì e Venerdì 8:10 - 13:20 Martedì e Giovedì 8:10 - 16:10 |
-| Connettività | *es. Wi-Fi scolastico condiviso, rete mobile degli studenti, …* |
+| Connettività | Wi-Fi scolastico |
 
 ### Gli archetipi
 
@@ -111,9 +116,9 @@ Arricchisci gli archetipi della traccia.
 | --- | --- | --- | --- | --- | --- |
 | ARC-001 | Direttore — dirige la scuola, ha poco tempo, gli serve la visione d'insieme; è l'unico che gestisce anagrafiche e classi | Ufficio, sessioni brevi e mirate | *Ipotesi: medio-basse — serve un'interfaccia semplice, poche azioni per completare un task* | PC/laptop | Quotidiana, ma per sessioni brevi |
 | ARC-002 | Docente — insegna una o più materie in una o più classi; prepara verifiche, carica materiale, valuta gli studenti | Aula, sala professori, casa (preparazione materiale) | *Ipotesi: medie* | PC/laptop, occasionalmente tablet | Quotidiana |
-| ARC-003 | Studente — iscritto a una classe; studia sul materiale dei docenti, svolge le verifiche, tiene d'occhio i propri voti | Aula durante le verifiche, casa per lo studio | *Ipotesi: alte (nativi digitali)* | Smartphone per consultazione, PC/laptop probabile per le verifiche | Quotidiana, più volte al giorno |
+| ARC-003 | Studente — iscritto a una classe; studia sul materiale dei docenti, svolge le verifiche, tiene d'occhio i propri voti | Aula durante le verifiche, casa per lo studio | *Ipotesi: alte (nativi digitali)* | iPad a scuola (verifiche e consultazione), PC a casa; smartphone solo per consultare materiale e voti fuori da scuola | Quotidiana, più volte al giorno |
 
-> ⚠️ *Le colonne "Competenze digitali", "Dispositivo principale" e "Frequenza d'uso" sono ipotesi di partenza: vanno confermate (o corrette) con l'intervista ai ragazzi del primo anno prevista più sotto, prima di chiudere la sezione.*
+> ⚠️ *Le colonne "Competenze digitali" e "Frequenza d'uso" sono ipotesi di partenza: vanno confermate (o corrette) con l'intervista ai ragazzi del primo anno prevista più sotto, prima di chiudere la sezione.*
 
 > 💡 I collaudatori veri sono i ragazzi del primo anno. Usano lo smartphone in corridoio o il PC in laboratorio? La risposta cambia l'interfaccia, i requisiti di usabilità e perfino il dimensionamento.
 
@@ -125,7 +130,7 @@ Arricchisci gli archetipi della traccia.
 
 ScuolaChill è il registro della scuola, ma online e tutto in un posto.
 
-Lei crea gli account di docenti e studenti e forma le classi. Poi ognuno fa la sua parte: i docenti caricano il materiale, preparano le verifiche e danno i voti; gli studenti studiano, fanno le verifiche anche dal telefono e vedono subito i propri voti, materia per materia.
+Lei crea gli account di docenti e studenti e forma le classi. Poi ognuno fa la sua parte: i docenti caricano il materiale, preparano le verifiche e danno i voti; gli studenti studiano, fanno le verifiche sull' iPad e vedono subito i propri voti, materia per materia.
 
 E lei, da una sola pagina, vede come vanno tutte le classi, senza dover chiedere a nessuno.
 
@@ -162,7 +167,7 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 4. Viene mandata una mail con le credenziali allo studente
 5. Al primo accesso lo studente imposta una nuova password e l'account diventa attivo
 
-**Scenario principale.** Durante l'anno arriva un nuovo studente, Luca Galli, che va in 2B. Il Direttore lo crea inserendo i suoi dati e sceglie la classe 2B. Luca riceve l'email, accede dal telefono, cambia la password e trova subito il materiale e le verifiche della 2B.
+**Scenario principale.** Durante l'anno arriva un nuovo studente, Luca Galli, che va in 2B. Il Direttore lo crea inserendo i suoi dati e sceglie la classe 2B. Luca riceve l'email, accede dall'iPad, cambia la password e trova subito il materiale e le verifiche della 2B.
 
 **Scenari alternativi.**
 - *Classe non ancora creata:* a inizio anno le classi non esistono ancora. Il Direttore crea gli studenti senza classe e li assegna dopo (DIR-04); la vista d'insieme glieli segnala come "studenti senza classe".
@@ -230,14 +235,61 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 4. Accetta o cambia il voto proposto e, se vuole, aggiunge un commento
 5. Pubblica i voti: ogni studente vede il suo
 
-**Scenario principale.** Il sabato mattina la prof.ssa Neri apre la verifica della 2B chiusa venerdì. Le domande a risposta multipla sono già corrette; lei legge le due aperte di ogni studente e assegna i punti. Per Luca Galli il sistema propone 7, lei lo lascia così e aggiunge "Bene il procedimento, attenzione ai segni". Finito l'ultimo studente pubblica i voti, e Luca li vede dal telefono pochi minuti dopo.
+**Scenario principale.** Il sabato mattina la prof.ssa Neri apre la verifica della 2B chiusa venerdì. Le domande a risposta multipla sono già corrette; lei legge le due aperte di ogni studente e assegna i punti. Per Luca Galli il sistema propone 7, lei lo lascia così e aggiunge "Bene il procedimento, attenzione ai segni". Finito l'ultimo studente pubblica i voti, e Luca li vede dal PC di casa pochi minuti dopo.
 
 **Scenari alternativi.**
 - *Interrogazione:* il lunedì la docente interroga due studenti e inserisce subito i due voti orali; gli studenti li vedono in giornata.
 - *Studente assente:* uno studente non ha svolto la verifica e risulta "non svolta". La recupera su carta la settimana dopo e la docente gli inserisce il voto a mano.
 - *Voto sbagliato:* la docente si accorge di aver dato 5 invece di 6,5. Lo corregge; lo studente vede il voto nuovo e il sistema tiene traccia del cambio.
 
-*Ripeti il blocco per le altre storie principali di Docente e Studente.*
+**Storia:** STU-01 Consultare il materiale didattico
+
+**User flow**
+
+1. Lo Studente accede a ScuolaChill dall'iPad a scuola o dal PC a casa
+2. Apre la sezione Materiale e vede le materie della sua classe
+3. Sceglie una materia e scorre i materiali, dal più recente
+4. Apre il materiale: il file si scarica o si apre nel browser, il link si apre in una nuova scheda
+
+**Scenario principale.** Lunedì mattina, in classe, Luca Galli apre ScuolaChill dall'iPad. Nella sezione Materiale vede che Matematica ha un materiale nuovo: è il PDF sulle equazioni di secondo grado caricato dalla prof.ssa Neri la sera prima. Lo legge durante la lezione; il pomeriggio lo riapre dal PC di casa per fare gli esercizi.
+
+**Scenari alternativi.**
+- *Studente non ancora in una classe:* a inizio anno Luca ha l'account ma il Direttore non l'ha ancora messo in una classe. Nella sezione Materiale trova un messaggio che glielo spiega, non una pagina di errore.
+- *Link passato a un compagno di un'altra classe:* Luca copia il link del PDF e lo manda a un amico della 3A. L'amico non riesce ad aprirlo, perché il materiale è solo per la 2B.
+- *Materiale eliminato:* la docente elimina un PDF con un errore e ne carica uno corretto. Luca, aprendo il vecchio link salvato, vede che non è più disponibile e trova quello nuovo in cima all'elenco.
+
+**Storia:** STU-02 Svolgere una verifica
+
+**User flow**
+
+1. Lo Studente accede a ScuolaChill
+2. Apre la sezione Verifiche e sceglie quella aperta
+3. Preme "Inizia": vede le domande e il tempo rimanente
+4. Risponde alle domande; ogni risposta si salva da sola
+5. Consegna e conferma: la verifica risulta "consegnata"
+
+**Scenario principale.** Venerdì alle 9:00 Luca Galli è in classe con la 2B; lo smartphone è nell'armadietto. Dall'iPad apre la verifica di Matematica sulle equazioni di secondo grado, preme "Inizia" e vede 50 minuti sul contatore. Risponde alle 8 domande a risposta multipla, torna indietro a cambiarne una e scrive le due risposte aperte. Alle 9:42 preme "Consegna": il sistema gli dice che ha risposto a tutto, lui conferma e vede l'ora di consegna. Alle 10:00, alla chiusura, vede le risposte corrette delle domande chiuse; il voto arriverà quando la prof.ssa Neri lo pubblica.
+
+**Scenari alternativi.**
+- *Connessione che cade:* a metà verifica il Wi-Fi della scuola si blocca. Luca vede l'avviso "sei offline" e continua a rispondere; dopo due minuti la rete torna e le risposte in sospeso si salvano da sole *(proposta, da confermare)*.
+- *iPad che si spegne:* l'iPad di Luca si scarica. La docente gli dà un iPad di riserva o un PC del laboratorio; Luca riapre la verifica e riprende dalle ultime risposte salvate, con il tempo che gli resta.
+- *Tempo scaduto:* Luca non fa in tempo a finire l'ultima risposta aperta. Allo scadere dei 50 minuti il sistema consegna da solo quello che ha salvato e la segna come "consegnata automaticamente".
+
+**Storia:** STU-03 Consultare i propri voti
+
+**User flow**
+
+1. Lo Studente accede a ScuolaChill
+2. Apre la sezione Voti e vede le sue materie con la media del quadrimestre
+3. Sceglie una materia e vede i voti, dal più recente, con data, tipo di prova e commento
+4. Se il voto viene da una verifica online, la apre e rivede le sue risposte
+
+**Scenario principale.** Sabato pomeriggio Luca Galli riceve il voto della verifica di Matematica. Apre ScuolaChill dal PC di casa: Matematica ha un voto nuovo, un 7 con il commento "Bene il procedimento, attenzione ai segni". La media della materia passa da 6,25 a 6,50. Luca apre la verifica, guarda la domanda in cui ha sbagliato un segno e la confronta con la risposta corretta.
+
+**Scenari alternativi.**
+- *Voto corretto dal docente:* la prof.ssa Neri si accorge di aver sbagliato un voto e lo cambia. Luca vede il voto nuovo, segnato come "modificato", e la media aggiornata.
+- *Verifica non svolta:* Luca era assente il giorno della verifica di Inglese. La vede segnata come "non svolta", senza effetto sulla media, finché non arriva il voto del recupero.
+- *Curiosità sui voti di un compagno:* Luca prova a cambiare l'ID nell'indirizzo della pagina per vedere i voti di un compagno. Il sistema rifiuta la richiesta.
 
 ---
 
@@ -254,9 +306,9 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 | DOC-01 | Caricare materiale didattico | AC-01 caricamento con titolo, classe e materia; AC-02 solo le proprie classi e materie; AC-03 campi obbligatori; AC-04 formati ammessi; AC-05 dimensione massima *(proposta 20 MB)*; AC-06 link esterno *(proposta)*; AC-07 stessa materia in più classi; AC-08 modifica; AC-09 eliminazione; AC-10 elenco paginato; AC-11 caricamento interrotto; AC-12 materiale di chi non insegna più la materia *(proposta)*; AC-13 solo il docente della classe e materia (dettaglio in `user-story/docente/DOC-01`) | Il materiale appartiene alla coppia classe/materia, non al docente. Collegata a DIR-04 e STU-01. Da chiarire se il Direttore può caricare materiale |
 | DOC-02 | Creare le proprie verifiche | AC-01 creazione in bozza; AC-02 solo le proprie classi e materie; AC-03/AC-04 tipi di domanda (multipla, vero/falso, aperta) con punteggio e risposta corretta; AC-05 ordine delle domande; AC-06 finestra di svolgimento e durata; AC-07 pubblicazione; AC-08 anteprima; AC-09 modifica prima dell'apertura; AC-10 modifica dopo l'apertura *(proposta)*; AC-11 duplicazione; AC-12 eliminazione; AC-13 elenco paginato; AC-14 correzione automatica delle domande chiuse; AC-15 solo il docente della classe e materia (dettaglio in `user-story/docente/DOC-02`) | Collegata alla decisione aperta sulla modifica dopo lo svolgimento: proposta in AC-10, da confermare e poi scrivere come FR. Il punteggio non è il voto (DOC-03) |
 | DOC-03 | Assegnare i voti | AC-01 scala da 1 a 10 con passo 0,5 *(proposta)*; AC-02 correzione della verifica online; AC-03 voto proposto dal punteggio *(proposta)*; AC-04 pubblicazione dei voti di una verifica; AC-05 voto per prove fuori da ScuolaChill (scritto, orale, pratico); AC-06 voti a tutta la classe; AC-07 solo le proprie classi e materie; AC-08 verifica non svolta; AC-09 commento; AC-10 modifica con storico; AC-11 eliminazione con storico; AC-12 voti per quadrimestre *(proposta)*; AC-13 registro della classe; AC-14 solo il docente della classe e materia (dettaglio in `user-story/docente/DOC-03`) | Collegata alla decisione aperta sulla scala dei voti: proposta in AC-01, da confermare e poi scrivere come FR. Le medie di DIR-03 e STU-03 dipendono da qui |
-| STU-01 | Consultare il materiale didattico | *…* | *…* |
-| STU-02 | Svolgere una verifica | *…* | *Collegata alla decisione aperta sulla connessione che cade* |
-| STU-03 | Consultare i propri voti | *…* | *…* |
+| STU-01 | Consultare il materiale didattico | AC-01 materiale diviso per materia; AC-02 elenco paginato dal più recente; AC-03 apertura di un file; AC-04 apertura di un link; AC-05 solo il materiale della propria classe; AC-06 materiale nuovo *(proposta)*; AC-07 ricerca; AC-08 usabile da iPad, PC e smartphone; AC-09 nessun materiale; AC-10 studente senza classe; AC-11 materiale modificato o eliminato; AC-12 file non disponibile; AC-13 cambio di classe *(proposta)*; AC-14 sola lettura (dettaglio in `user-story/studente/STU-01`) | Collegata a DOC-01 (caricamento) e DIR-04 (trasferimento fra classi). Collegata a NFR-11 (dispositivi) |
+| STU-02 | Svolgere una verifica | AC-01 elenco delle verifiche; AC-02 apertura solo nella finestra; AC-03 inizio e tempo disponibile; AC-04 tempo rimanente calcolato dal server; AC-05 risposte e navigazione fra le domande; AC-06 salvataggio automatico; AC-07 consegna con conferma; AC-08 consegna automatica allo scadere; AC-09 un solo tentativo; AC-10 connessione che cade *(proposta)*; AC-11 tempo scaduto offline *(proposta)*; AC-12 risposte corrette mai visibili durante la verifica; AC-13 dopo la consegna *(proposta)*; AC-14 verifica non svolta; AC-15 verifica modificata dal docente durante lo svolgimento; AC-16 usabile da iPad e PC; AC-17 solo le verifiche della propria classe (dettaglio in `user-story/studente/STU-02`) | Collegata alla decisione aperta sulla connessione che cade: proposta in AC-10 e AC-11, da confermare e poi scrivere come FR. Collegata a DOC-02 (AC-10, AC-14, AC-15), NFR-01 e NFR-11 |
+| STU-03 | Consultare i propri voti | AC-01 voti raggruppati per materia; AC-02 dettaglio di una materia; AC-03 solo i voti pubblicati; AC-04 media della materia; AC-05 voti per quadrimestre; AC-06 voto insufficiente in evidenza; AC-07 voto nuovo *(proposta)*; AC-08 voto di una verifica online; AC-09 verifica non svolta; AC-10 voto modificato o eliminato; AC-11 riepilogo generale *(proposta)*; AC-12 nessun voto; AC-13 cambio di classe; AC-14 usabile da iPad, PC e smartphone; AC-15 solo i propri voti (dettaglio in `user-story/studente/STU-03`) | Voti e medie dipendono dalla decisione sulla scala dei voti (DOC-03 AC-01). Stesse regole di calcolo delle medie di DIR-03. Collegata a NFR-11 |
 
 > 💡 Gli AC completi (già scritti nella traccia) restano nel documento della traccia stessa come riferimento; qui riportate solo quelli che il team **aggiunge**.
 
@@ -271,8 +323,8 @@ La traccia lascia alcune scelte a te. Ognuna diventa un requisito con il suo ID.
 
 I punti che devi decidere almeno sono questi.
 
-- [ ] La scala dei voti (DOC-03). Da quanto a quanto, con quale passo, se ammette segni come "+" e "−".
-- [ ] Il trasferimento di uno studente fra classi (DIR-04). Si può fare? Cosa succede ai voti?
+- [x] La scala dei voti (DOC-03). Da quanto a quanto, con quale passo, se ammette segni come "+" e "−".
+- [x] Il trasferimento di uno studente fra classi (DIR-04). Si può fare? Cosa succede ai voti?
 - [ ] La modifica di una verifica dopo lo svolgimento (DOC-02).
 - [ ] La connessione che cade durante una verifica (STU-02).
 - [x] Il fallimento del servizio esterno (per esempio l'email delle credenziali).
@@ -310,6 +362,7 @@ Ogni requisito ha una soglia, una condizione e un modo per verificarlo. Ed è co
 | NFR-08 | Interazione | Le API principali sono documentate con OpenAPI/Swagger e verificate con una collezione Postman | Copertura di tutte le route CRUD principali | Revisione Swagger + esecuzione della collezione Postman | Tutte |
 | NFR-09 | Conformità | Gli elenchi (studenti, materiali, voti) sono paginati e le risposte di errore hanno un formato uniforme con codici HTTP coerenti | Paginazione su ogni collezione, schema di errore unico su tutta l'API | Test automatici sulle risposte | DIR-03, STU-01, STU-03 |
 | NFR-10 | Prestazioni | La vista d'insieme del Direttore (riepilogo, segnalazioni, medie) si apre rapidamente anche con tutta la scuola caricata | Meno di 2 s per il 95% delle aperture, con 484 studenti, 21 classi e un quadrimestre di voti — *da tarare sulla stima di carico* | Test di carico su dati di prova della dimensione della scuola | DIR-03 |
+| NFR-11 | Usabilità | Le pagine dello studente sono pensate per l'iPad (touch, orientamento verticale e orizzontale) e per il PC. Materiale e voti si consultano anche da smartphone; le verifiche non sono progettate per lo smartphone | Su iPad e PC ogni pagina dello studente si usa senza zoomare né scorrere in orizzontale, e la verifica si svolge per intero con la tastiera a schermo dell'iPad. Da smartphone (360 px di larghezza) materiale e voti restano leggibili | Prova dei collaudatori del primo anno su iPad, PC e smartphone, con i browser di VIN-03 | STU-01, STU-02, STU-03 |
 
 > 💡 Le famiglie da coprire sono queste. **Prestazioni, disponibilità, scalabilità, sicurezza** e **conformità** vengono dalla lezione sui requisiti funzionali e non funzionali. **Usabilità, ambientali, supporto** e **interazione** vengono dalla lezione sul PRD. Se una famiglia resta vuota, scrivi perché non vi riguarda.
 >
@@ -334,7 +387,9 @@ Quello che date per vero senza poterlo garantire.
 
 | ID | Assunzione | Cosa succede se è falsa |
 | --- | --- | --- |
-| ASS-01 | La scuola ha 484 studenti e 18 docenti | Il dimensionamento va rifatto |
+| ASS-01 | La scuola ha 500 studenti e 18 docenti | Il dimensionamento va rifatto |
+| ASS-02 | A scuola ogni studente ha un iPad a disposizione, almeno durante le verifiche | Le verifiche vanno fatte a turni sui PC del laboratorio e il picco delle 9:00 cambia |
+| ASS-03 | A casa lo studente ha un PC o uno smartphone con una connessione internet | Materiale e voti si consultano solo da scuola; serve un'alternativa per chi non ha la connessione |
 | | | |
 
 ### Vincoli
@@ -344,6 +399,8 @@ I limiti che non potete cambiare.
 | ID | Vincolo | Da dove viene |
 | --- | --- | --- |
 | VIN-01 | *es. Il budget cloud è quello dei crediti studente* | *Traccia del progetto* |
+| VIN-02 | A scuola gli studenti non usano lo smartphone, che resta nell'armadietto: si usano solo l'iPad e i PC del laboratorio | Regolamento della scuola |
+| VIN-03 | ScuolaChill deve funzionare su Safari per iPadOS e sui principali browser per PC (Chrome, Edge, Firefox, Safari) | Dispositivi in uso nella scuola (VIN-02) |
 | | | |
 
 ### Dipendenze
@@ -370,17 +427,17 @@ Da qui in poi parli al tuo docente e al tuo team, non al Direttore. Ogni scelta 
 
 | Situazione | Utenti concorrenti | Da dove viene il numero |
 | --- | --- | --- |
-| Uso normale durante la giornata | *…* | *…* |
+| Uso normale durante la giornata | 200 | *…* |
 | Picco delle 9:00 (verifiche) | 100 | *…* |
-| Fine quadrimestre (voti) | 350 | *…* |
+| Fine quadrimestre (voti) | 400 | *…* |
 
 ### Profilo di carico
 
 | Operazione | Frequente? | Pesante? | Critica? | Note |
 | --- | --- | --- | --- | --- |
-| Login | *…* | *…* | *…* | *…* |
-| Apertura verifica | *…* | *…* | *…* | *…* |
-| Consegna verifica | *…* | *…* | *…* | *…* |
+| Login | Ogni mese | *…* | *…* | *…* |
+| Apertura verifica |  | *…* | *…* | *…* |
+| Consegna verifica | fine dell'ora | *…* | *…* | *…* |
 | Dashboard del Direttore | *…* | *…* | *…* | *…* |
 | Caricamento materiale | *…* | *…* | *…* | *…* |
 
@@ -397,12 +454,12 @@ I numeri di qui devono essere coerenti con la scuola che avete immaginato e con 
 
 | Area | Scelta | Alternativa considerata | Perché avete scelto così |
 | --- | --- | --- | --- |
-| Backend | *…* | *…* | *…* |
-| Frontend | *…* | *…* | *…* |
-| Database | *…* | *…* | *…* |
+| Backend | Node.js | *…* |  |
+| Frontend | React(Vite) | *…* | *…* |
+| Database | SQL | *…* | *…* |
 | Provider cloud | *…* | *…* | *…* |
 | Servizi cloud | *…* | *…* | *…* |
-| Regione | *…* | *…* | *…* |
+| Regione | UE | *…* | *…* |
 | Servizio esterno | *…* | *…* | *…* |
 
 ---
