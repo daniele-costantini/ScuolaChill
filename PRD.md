@@ -17,7 +17,7 @@
 | **Prodotto** | ScuolaChill |
 | **Team** |  |
 | **Autori** | Daniele Costantini |
-| **Versione** | 0.1.9 |
+| **Versione** | 0.1.10 |
 | **Data** | 09/10/2026 |
 | **Stato** | Bozza |
 
@@ -45,6 +45,7 @@
 | 0.1.7 | 09/10/2026 | Daniele Costantini | I compiti diventano un avviso sul registro: il docente li segna con scadenza e link a Classroom, consegna e correzione restano su Classroom. Così non servono file né spazio in più. Riscritte DOC-04 e STU-04 (ora "Consultare i compiti per casa"); ASS-10 ora riguarda Classroom; aggiornati perimetro, NFR-11, ASS-03, DIP-04, profilo di carico e permessi |
 | 0.1.8 | 09/10/2026 | Daniele Costantini | Esclusi in modo esplicito l'account genitore, le note disciplinari e le circolari, che nessuna parte del PRD citava |
 | 0.1.9 | 09/10/2026 | Daniele Costantini | Comunicazioni e note disciplinari dentro il perimetro: nuove storie del team DIR-05, DOC-05, DOC-06 e STU-05 con user flow e scenari; aggiornati panoramica, archetipo dello studente, NFR-11, VIN-07, profilo di carico e permessi |
+| 0.1.10 | 09/10/2026 | Daniele Costantini | Note disciplinari: confermato che i docenti della classe vedono le note dei colleghi, ma non possono modificarle né annullarle (nuovo DOC-06 AC-06) |
 
 > 💡 Il PRD cambierà durante l'anno. Ogni modifica va registrata qui, con la sua ragione. Un PRD che dice una cosa mentre il codice ne fa un'altra è peggio di nessun PRD.
 
@@ -415,7 +416,7 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 | DOC-03 | Assegnare i voti | AC-01 scala da 1 a 10 con passo 0,5 *(proposta)*; AC-02 correzione della verifica online; AC-03 voto proposto dal punteggio *(proposta)*; AC-04 pubblicazione dei voti di una verifica; AC-05 voto per prove fuori da ScuolaChill (scritto, orale, pratico); AC-06 voti a tutta la classe; AC-07 solo le proprie classi e materie; AC-08 verifica non svolta; AC-09 commento; AC-10 modifica con storico; AC-11 eliminazione con storico; AC-12 voti per quadrimestre *(proposta)*; AC-13 registro della classe; AC-14 solo il docente della classe e materia (dettaglio in `user-story/docente/DOC-03`) | Collegata alla decisione aperta sulla scala dei voti: proposta in AC-01, da confermare e poi scrivere come FR. Le medie di DIR-03 e STU-03 dipendono da qui |
 | DOC-04 | Assegnare i compiti per casa *(storia aggiunta dal team)* | AC-01 compito con titolo, classe, materia e scadenza; AC-02 solo le proprie classi e materie; AC-03 campi obbligatori; AC-04 link al compito su Classroom; AC-05 nessuna consegna su ScuolaChill; AC-06 stesso compito in più classi; AC-07 modifica; AC-08 eliminazione; AC-09 elenco paginato; AC-10 voto del compito *(proposta)*; AC-11 compiti di chi non insegna più la materia; AC-12 solo il docente della classe e materia (dettaglio in `user-story/docente/DOC-04`) | Non c'è nella traccia: aggiunta perché i compiti sono dentro il perimetro. Il registro avvisa, la consegna avviene su Classroom (ASS-10). Collegata a DOC-03 e STU-04 |
 | DOC-05 | Comunicazioni alle proprie classi *(storia aggiunta dal team)* | AC-01 pubblicazione alle proprie classi; AC-02 solo le proprie classi; AC-03 campi obbligatori; AC-04 link; AC-05 modifica ed eliminazione; AC-06 comunicazioni ricevute; AC-07 comunicazioni inviate; AC-08 nessuna risposta; AC-09 solo i docenti della classe (dettaglio in `user-story/docente/DOC-05`) | Non c'è nella traccia. Stesse regole di DIR-05. Collegata a STU-05 |
-| DOC-06 | Assegnare note disciplinari *(storia aggiunta dal team)* | AC-01 nota a uno studente; AC-02 solo gli studenti delle proprie classi; AC-03 campi obbligatori; AC-04 nota alla classe; AC-05 chi vede la nota *(proposta)*; AC-06 modifica con storico; AC-07 annullamento *(proposta)*; AC-08 il Direttore vede e annulla; AC-09 note della classe; AC-10 nessun effetto su voti e medie; AC-11 solo i docenti scrivono note (dettaglio in `user-story/docente/DOC-06`) | Non c'è nella traccia: aggiunta perché le note sono dentro il perimetro. Dati delicati di minori (VIN-07). Collegata a DOC-03 (storico) e STU-05 |
+| DOC-06 | Assegnare note disciplinari *(storia aggiunta dal team)* | AC-01 nota a uno studente; AC-02 solo gli studenti delle proprie classi; AC-03 campi obbligatori; AC-04 nota alla classe; AC-05 chi vede la nota; AC-06 i colleghi della classe vedono ma non modificano; AC-07 modifica con storico; AC-08 annullamento *(proposta)*; AC-09 il Direttore vede e annulla; AC-10 note della classe; AC-11 nessun effetto su voti e medie; AC-12 solo i docenti scrivono note (dettaglio in `user-story/docente/DOC-06`) | Non c'è nella traccia: aggiunta perché le note sono dentro il perimetro. Dati delicati di minori (VIN-07). Collegata a DOC-03 (storico) e STU-05 |
 | STU-01 | Consultare il materiale didattico | AC-01 materiale diviso per materia; AC-02 elenco paginato dal più recente; AC-03 apertura di un file; AC-04 apertura di un link; AC-05 solo il materiale della propria classe; AC-06 materiale nuovo *(proposta)*; AC-07 ricerca; AC-08 usabile da iPad, PC e smartphone; AC-09 nessun materiale; AC-10 studente senza classe; AC-11 materiale modificato o eliminato; AC-12 file non disponibile; AC-13 cambio di classe *(proposta)*; AC-14 sola lettura (dettaglio in `user-story/studente/STU-01`) | Collegata a DOC-01 (caricamento) e DIR-04 (trasferimento fra classi). Collegata a NFR-11 (dispositivi) |
 | STU-02 | Svolgere una verifica | AC-01 elenco delle verifiche; AC-02 apertura solo nella finestra; AC-03 inizio e tempo disponibile; AC-04 tempo rimanente calcolato dal server; AC-05 risposte e navigazione fra le domande; AC-06 salvataggio automatico; AC-07 consegna con conferma; AC-08 consegna automatica allo scadere; AC-09 un solo tentativo; AC-10 connessione che cade *(proposta)*; AC-11 tempo scaduto offline *(proposta)*; AC-12 risposte corrette mai visibili durante la verifica; AC-13 dopo la consegna *(proposta)*; AC-14 verifica non svolta; AC-15 verifica modificata dal docente durante lo svolgimento; AC-16 usabile da iPad e PC; AC-17 solo le verifiche della propria classe (dettaglio in `user-story/studente/STU-02`) | Collegata alla decisione aperta sulla connessione che cade: proposta in AC-10 e AC-11, da confermare e poi scrivere come FR. Collegata a DOC-02 (AC-10, AC-14, AC-15), NFR-01 e NFR-11 |
 | STU-03 | Consultare i propri voti | AC-01 voti raggruppati per materia; AC-02 dettaglio di una materia; AC-03 solo i voti pubblicati; AC-04 media della materia; AC-05 voti per quadrimestre; AC-06 voto insufficiente in evidenza; AC-07 voto nuovo *(proposta)*; AC-08 voto di una verifica online; AC-09 verifica non svolta; AC-10 voto modificato o eliminato; AC-11 riepilogo generale *(proposta)*; AC-12 nessun voto; AC-13 cambio di classe; AC-14 usabile da iPad, PC e smartphone; AC-15 solo i propri voti (dettaglio in `user-story/studente/STU-03`) | Voti e medie dipendono dalla decisione sulla scala dei voti (DOC-03 AC-01). Stesse regole di calcolo delle medie di DIR-03. Collegata a NFR-11 |
@@ -701,9 +702,10 @@ I numeri di qui devono essere coerenti con la scuola che avete immaginato e con 
 | Pubblicare comunicazioni a tutta la scuola, ai docenti o agli studenti | ✅ | ❌ | ❌ |
 | Pubblicare comunicazioni alle proprie classi | ✅ | ✅ | ❌ |
 | Leggere le comunicazioni ricevute | ✅ | ✅ | ✅ |
-| Segnare e modificare una nota disciplinare | ❌ | ✅ | ❌ |
-| Annullare una nota disciplinare | ✅ | ✅ (solo le proprie) | ❌ |
-| Vedere le note disciplinari | ✅ (tutte) | ✅ (delle proprie classi) | ✅ (solo le proprie) |
+| Segnare una nota disciplinare | ❌ | ✅ | ❌ |
+| Modificare una nota disciplinare | ❌ | ✅ (solo le proprie) | ❌ |
+| Annullare una nota disciplinare | ✅ | ✅ (solo le proprie, non quelle dei colleghi) | ❌ |
+| Vedere le note disciplinari | ✅ (tutte) | ✅ (tutte quelle delle proprie classi, anche dei colleghi) | ✅ (solo le proprie) |
 | *…* |  |  |  |
 
 *Spiega dove viene fatto rispettare questo controllo. Ricorda che il frontend non basta mai.*

@@ -30,7 +30,7 @@ Dato che il mittente ha modificato o eliminato una comunicazione, quando ricaric
 Dato che sono autenticato come Studente, quando apro la sezione Note, allora vedo le mie note e quelle date a tutta la mia classe, dalla più recente, con data, docente e motivo.
 
 **AC-06 · Nota modificata o annullata**
-Dato che il docente ha modificato o annullato una mia nota (DOC-06 AC-06, AC-07), quando la guardo, allora la vedo segnata come "modificata" oppure "annullata".
+Dato che il docente ha modificato o annullato una mia nota (DOC-06 AC-07, AC-08), quando la guardo, allora la vedo segnata come "modificata" oppure "annullata".
 
 **AC-07 · Solo le mie note**
 Dato che sono autenticato come Studente, quando provo a vedere le note di un compagno (anche cambiando l'ID nell'indirizzo o chiamando direttamente l'API), allora il sistema rifiuta la richiesta con errore di autorizzazione.
