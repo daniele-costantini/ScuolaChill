@@ -659,8 +659,8 @@ I numeri di qui devono essere coerenti con la scuola che avete immaginato e con 
 | --- | --- | --- | --- |
 | Backend | Node.js con Express | Next.js anche per le API (un solo progetto) | API REST separate, facili da documentare e provare (NFR-08), con il controllo dei ruoli in un posto solo (NFR-03) |
 | Frontend | React con Next.js | React con Vite | Routing pronto per le tre aree; con lo static export non serve un server in più |
-| Database | PostgreSQL | MongoDB | I dati sono relazionali: vincoli (uno studente in una sola classe), transazioni (pubblicazione dei voti) e medie (DIR-03) si fanno bene in SQL |
-| Provider cloud | Microsoft Azure | AWS | Crediti Azure for Students senza carta di credito (VIN-01) e servizi gestiti per Node.js e PostgreSQL |
+| Database | MySQL | PostgreSQL | Dati relazionali (vincoli, transazioni, medie in SQL). Entrambi vanno bene; MySQL lo conosciamo già ed è disponibile gestito su Azure. PostgreSQL ha più funzioni, che qui non ci servono |
+| Provider cloud | Microsoft Azure | AWS | Crediti Azure for Students senza carta di credito (VIN-01) e servizi gestiti per Node.js e MySQL |
 | Servizi cloud |  |  |  |
 | Regione | Italy North (Milano) | West Europe (Paesi Bassi) | Dati di minori in Italia, quindi in UE per il GDPR (VIN-07), e tempi di risposta più bassi |
 | Servizio esterno | Azure Communication Services Email *(oppure Google)*| Brevo | Pochi centesimi con i crediti Azure. Brevo ha un limite di 300 email al giorno, troppo poco a inizio anno con 500 studenti |
