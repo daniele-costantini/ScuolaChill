@@ -52,7 +52,7 @@ Dato che un account docente esiste, quando il Direttore modifica nome, cognome, 
 Dato che un account docente è disattivato, quando il Direttore lo riattiva, allora il docente può di nuovo accedere con le sue credenziali e ritrova i suoi dati storici.
 
 **AC-12 · Password dimenticata** *(proposta, da confermare con il team)*
-Dato che il docente ha dimenticato la password, quando la richiede dalla pagina di accesso inserendo la propria email, allora riceve un link per impostarne una nuova, senza passare dal Direttore. Se l'email non parte, il Direttore può reinviare le credenziali dall'elenco docenti (FR-EXT-01).
+Dato che il docente ha dimenticato la password, quando la richiede dalla pagina di accesso inserendo la propria email, allora riceve un link per impostarne una nuova, senza passare dal Direttore. Se l'email non parte, il Direttore può reinviare le credenziali dall'elenco docenti.
 
 ---
 
@@ -77,7 +77,6 @@ Dato che il docente ha dimenticato la password, quando la richiede dalla pagina 
 
 | Tipo | ID | Note |
 | --- | --- | --- |
-| Decisione aperta | FR-EXT-01 · Fallimento del servizio email | Coperta da AC-08 |
 | NFR | NFR-02 | HTTPS: le credenziali non viaggiano in chiaro |
 | NFR | NFR-03 | Controllo ruolo lato backend (AC-09) |
 | NFR | NFR-09 | Errori uniformi (AC-02, AC-05) ed elenco docenti paginato |

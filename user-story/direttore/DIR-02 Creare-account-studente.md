@@ -55,7 +55,7 @@ Dato che un account studente esiste, quando il Direttore modifica nome, cognome 
 Dato che un account studente è disattivato, quando il Direttore lo riattiva, allora lo studente può di nuovo accedere e ritrova i suoi voti.
 
 **AC-13 · Password dimenticata** *(proposta, da confermare con il team)*
-Dato che lo studente ha dimenticato la password, quando la richiede dalla pagina di accesso inserendo la propria email, allora riceve un link per impostarne una nuova, senza passare dal Direttore. Se l'email non parte, il Direttore può reinviare le credenziali dall'elenco studenti (FR-EXT-01).
+Dato che lo studente ha dimenticato la password, quando la richiede dalla pagina di accesso inserendo la propria email, allora riceve un link per impostarne una nuova, senza passare dal Direttore. Se l'email non parte, il Direttore può reinviare le credenziali dall'elenco studenti.
 
 ---
 
@@ -82,7 +82,6 @@ Dato che lo studente ha dimenticato la password, quando la richiede dalla pagina
 
 | Tipo | ID | Note |
 | --- | --- | --- |
-| Decisione aperta | FR-EXT-01 · Fallimento del servizio email | Coperta da AC-07 |
 | Decisione aperta | Trasferimento fra classi (DIR-04) | AC-04 assegna solo la classe iniziale |
 | NFR | NFR-02 | HTTPS: le credenziali non viaggiano in chiaro |
 | NFR | NFR-03 | Controllo ruolo lato backend (AC-09) |
