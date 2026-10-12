@@ -22,7 +22,7 @@ Come Direttore, voglio avere una vista d'insieme su classi, docenti, studenti e 
 Dato che sono autenticato come Direttore, quando apro ScuolaChill, allora vedo subito un riepilogo con il numero di classi, di docenti attivi, di studenti attivi e di account ancora "in attesa di attivazione".
 
 **AC-02 · Segnalazioni da sistemare**
-Dato che ci sono situazioni che richiedono un mio intervento, quando apro la vista d'insieme, allora vedo in evidenza: studenti senza classe, classi con materie senza docente, docenti disattivati ancora assegnati a una classe, email di attivazione non partite e link di attivazione scaduti senza che l'account sia stato attivato. Da ogni segnalazione posso andare direttamente alla pagina per risolverla.
+Dato che ci sono situazioni che richiedono un mio intervento, quando apro la vista d'insieme, allora vedo in evidenza: studenti senza classe, classi con materie senza docente, docenti disattivati ancora assegnati a una classe, email di attivazione non partite, link di attivazione scaduti senza che l'account sia stato attivato, classi senza orario (DIR-06) e ore di lezione passate senza appello (DOC-07, *proposta*). Da ogni segnalazione posso andare direttamente alla pagina per risolverla.
 
 **AC-03 · Elenco classi**
 Dato che sono nella vista d'insieme, quando apro l'elenco classi, allora per ogni classe vedo il nome, il numero di studenti, le materie con il rispettivo docente e la media dei voti della classe.
@@ -74,7 +74,7 @@ Dato che sono autenticato come Docente o Studente, quando provo ad accedere alla
 - Creare o comporre classi → **DIR-04** (la vista porta lì tramite le segnalazioni, AC-02)
 - Modificare voti o verifiche (AC-10)
 - Esportare report (PDF/Excel) *(da decidere: servirebbe al Direttore?)*
-- Assenze e comunicazioni con le famiglie (fuori perimetro del PRD)
+- Comunicazioni con le famiglie (fuori perimetro del PRD)
 
 ## Collegamenti
 
