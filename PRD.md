@@ -17,7 +17,7 @@
 | **Prodotto** | ScuolaChill |
 | **Team** |  |
 | **Autori** | Daniele Costantini |
-| **Versione** | 0.2.2 |
+| **Versione** | 0.2.3 |
 | **Data** | 09/10/2026 |
 | **Stato** | Bozza |
 
@@ -48,6 +48,7 @@
 | 0.2.0 | 09/10/2026 | Daniele Costantini | Note disciplinari: confermato che i docenti della classe vedono le note dei colleghi, ma non possono modificarle né annullarle (nuovo DOC-06 AC-06) |
 | 0.2.1 | 09/10/2026 | Daniele Costantini | Scelte tecnologiche: completata la tabella con alternative e motivazioni per backend (Node.js), frontend (React) e database (PostgreSQL) |
 | 0.2.2 | 12/10/2026 | Daniele Costantini | Tolta la decisione FR-EXT-01 sul fallimento dell'email e tutti i suoi riferimenti (PRD, DIR-01, DIR-02); la decisione sul fallimento del servizio esterno torna aperta |
+| 0.2.3 | 12/10/2026 | Daniele Costantini | Al posto delle credenziali via email, un link di attivazione valido 48 ore: l'utente sceglie la sua password. Nuova decisione FR-ACC-01 sul fallimento dell'email; aggiornati DIR-01, DIR-02, DIR-03, user flow, NFR-04, ASS-04, DIP-01, permessi e servizio esterno |
 
 > 💡 Il PRD cambierà durante l'anno. Ogni modifica va registrata qui, con la sua ragione. Un PRD che dice una cosa mentre il codice ne fa un'altra è peggio di nessun PRD.
 
@@ -61,7 +62,7 @@
 
 **Dal lato business.** Oggi materiale, verifiche e voti passano da fotocopie, chiavette, registri cartacei e strumenti diversi per ogni docente: il Direttore non ha una visione d'insieme e gli studenti non sanno dove trovare le cose. ScuolaChill mette la didattica di ogni giorno in un unico posto, così il Direttore governa classi e account senza chiedere a nessuno, i docenti risparmiano tempo nella preparazione e nella correzione delle verifiche, e gli studenti trovano materiale e voti appena sono disponibili.
 
-**Dal lato tecnico.** ScuolaChill è un'applicazione web, usabile dal browser sia da PC sia da iPad, con un accesso personale per ogni utente e tre ruoli (Direttore, Docente, Studente) che vedono e possono fare solo ciò che li riguarda. Il sistema conserva in modo centralizzato account, classi, materiali, compiti, verifiche e voti, corregge da solo le domande chiuse delle verifiche e si appoggia a un servizio email esterno per inviare le credenziali. È pubblicato sul cloud e raggiungibile da internet, anche da casa.
+**Dal lato tecnico.** ScuolaChill è un'applicazione web, usabile dal browser sia da PC sia da iPad, con un accesso personale per ogni utente e tre ruoli (Direttore, Docente, Studente) che vedono e possono fare solo ciò che li riguarda. Il sistema conserva in modo centralizzato account, classi, materiali, compiti, verifiche e voti, corregge da solo le domande chiuse delle verifiche e si appoggia a un servizio email esterno per inviare i link di attivazione degli account. È pubblicato sul cloud e raggiungibile da internet, anche da casa.
 
 ### Cosa è incluso
 
@@ -160,14 +161,15 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 1. Il Direttore accede a ScuolaChill
 2. Apre la sezione crea utente e sceglie "Docente"
 3. Inserisce nome, cognome, email e le materie che il docente può insegnare
-4. Viene mandata una mail con le credenziali al docente
-5. Al primo accesso il docente imposta una nuova password e l'account diventa attivo
+4. Il docente riceve un'email con un link di attivazione, valido 48 ore
+5. Apre il link, sceglie la sua password e l'account diventa attivo
 
-**Scenario principale.** A inizio settembre è arrivata una nuova docente di matematica, la prof.ssa Giulia Neri. Il Direttore apre ScuolaChill dal PC dell'ufficio, inserisce nome, cognome ed email e sceglie "Matematica" e "Fisica" dall'elenco materie. Dopo il salvataggio la docente compare nell'elenco come "in attesa di attivazione". Il giorno dopo la prof.ssa Neri apre l'email, accede, imposta la sua password e il suo account risulta "attivo". Il Direttore poi la assegna alle classi (DIR-04).
+**Scenario principale.** A inizio settembre è arrivata una nuova docente di matematica, la prof.ssa Giulia Neri. Il Direttore apre ScuolaChill dal PC dell'ufficio, inserisce nome, cognome ed email e sceglie "Matematica" e "Fisica" dall'elenco materie. Dopo il salvataggio la docente compare nell'elenco come "in attesa di attivazione". Il giorno dopo la prof.ssa Neri apre l'email, clicca sul link, sceglie la sua password e il suo account risulta "attivo". Il Direttore poi la assegna alle classi (DIR-04).
 
 **Scenari alternativi.**
 - *Email già registrata:* il Direttore sbaglia e inserisce l'email di un altro docente. Il sistema non salva e gli dice che l'email è già in uso.
-- *Email non partita:* il servizio email non risponde. L'account viene salvato lo stesso, il Direttore vede un avviso e più tardi reinvia le credenziali dall'elenco docenti.
+- *Email non partita:* il servizio email non risponde. L'account viene salvato lo stesso e il sistema riprova da solo; se non riesce, il Direttore trova la segnalazione e reinvia il link dall'elenco docenti (FR-ACC-01).
+- *Link scaduto:* la docente apre l'email dopo tre giorni. Il link non vale più e il Direttore gliene manda uno nuovo.
 - *Docente che lascia la scuola:* a fine anno il Direttore disattiva l'account. Il docente non può più accedere, ma le verifiche e i voti che ha dato restano.
 
 **Storia:** DIR-02 Creare account studente
@@ -177,15 +179,15 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 1. Il Direttore accede a ScuolaChill
 2. Apre la sezione crea utente e sceglie "Studente"
 3. Inserisce nome, cognome, email e, se esiste già, la classe
-4. Viene mandata una mail con le credenziali allo studente
-5. Al primo accesso lo studente imposta una nuova password e l'account diventa attivo
+4. Lo studente riceve un'email con un link di attivazione, valido 48 ore
+5. Apre il link, sceglie la sua password e l'account diventa attivo
 
-**Scenario principale.** Durante l'anno arriva un nuovo studente, Luca Galli, che va in 2B. Il Direttore lo crea inserendo i suoi dati e sceglie la classe 2B. Luca riceve l'email, accede dall'iPad, cambia la password e trova subito il materiale e le verifiche della 2B.
+**Scenario principale.** Durante l'anno arriva un nuovo studente, Luca Galli, che va in 2B. Il Direttore lo crea inserendo i suoi dati e sceglie la classe 2B. Luca riceve l'email, apre il link dall'iPad, sceglie la sua password e trova subito il materiale e le verifiche della 2B.
 
 **Scenari alternativi.**
 - *Classe non ancora creata:* a inizio anno le classi non esistono ancora. Il Direttore crea gli studenti senza classe e li assegna dopo (DIR-04); la vista d'insieme glieli segnala come "studenti senza classe".
-- *Email non partita:* come per i docenti, l'account resta salvato e il Direttore reinvia le credenziali.
-- *Password dimenticata:* lo studente la reimposta da solo dalla pagina di accesso, senza chiedere al Direttore *(proposta, da confermare)*.
+- *Email non partita:* come per i docenti, l'account resta salvato, il sistema riprova e se serve il Direttore reinvia il link (FR-ACC-01).
+- *Password dimenticata:* lo studente riceve un link valido 1 ora e ne sceglie una nuova da solo, senza chiedere al Direttore.
 
 **Storia:** DIR-04 Creare classi e comporle
 
@@ -408,8 +410,8 @@ Per ogni ruolo, scegli **almeno tre** storie principali e descrivi il percorso c
 
 | ID | Storia | AC aggiunti dal team | Note |
 | --- | --- | --- | --- |
-| DIR-01 | Creare account docente | AC-05 campi obbligatori e formato; AC-06 materie scelte da elenco predefinito; AC-07 cambio password obbligatorio al primo accesso; AC-08 invio email fallito; AC-09 solo il Direttore può creare docenti; AC-10 modifica dei dati; AC-11 riattivazione; AC-12 password dimenticata *(proposta)* (dettaglio in `user-story/DIR-01`) | L'assegnazione del docente alle classi è in DIR-04. Gli account non si eliminano, si disattivano |
-| DIR-02 | Creare account studente | AC-01…AC-03 creazione, email unica, campi obbligatori; AC-04 classe facoltativa alla creazione; AC-05/AC-06 stato "in attesa di attivazione" e cambio password al primo accesso; AC-07 invio email fallito; AC-08 disattivazione; AC-09 solo il Direttore può creare studenti; AC-10 creazione da CSV *(da confermare)*; AC-11 modifica dei dati; AC-12 riattivazione; AC-13 password dimenticata *(proposta)* (dettaglio in `user-story/DIR-02`) | Collegata a DIR-04 (composizione e trasferimento fra classi). Stessi stati account di DIR-01 |
+| DIR-01 | Creare account docente | AC-05 campi obbligatori e formato; AC-06 materie scelte da elenco predefinito; AC-07 attivazione con il link (48 ore); AC-08 invio email fallito; AC-09 solo il Direttore può creare docenti; AC-10 modifica dei dati; AC-11 riattivazione; AC-12 password dimenticata; AC-13 link di attivazione scaduto (dettaglio in `user-story/DIR-01`) | L'assegnazione del docente alle classi è in DIR-04. Gli account non si eliminano, si disattivano |
+| DIR-02 | Creare account studente | AC-01…AC-03 creazione, email unica, campi obbligatori; AC-04 classe facoltativa alla creazione; AC-05/AC-06 stato "in attesa di attivazione" e attivazione con il link (48 ore); AC-07 invio email fallito; AC-08 disattivazione; AC-09 solo il Direttore può creare studenti; AC-10 creazione da CSV *(da confermare)*; AC-11 modifica dei dati; AC-12 riattivazione; AC-13 password dimenticata; AC-14 link di attivazione scaduto (dettaglio in `user-story/DIR-02`) | Collegata a DIR-04 (composizione e trasferimento fra classi). Stessi stati account di DIR-01 |
 | DIR-03 | Vedere tutto | AC-01 riepilogo in prima pagina; AC-02 segnalazioni da sistemare; AC-03…AC-06 elenco e dettaglio di classi, studenti e docenti; AC-07 andamento dei voti per classe, materia e periodo; AC-08 ricerca; AC-09 elenchi paginati e filtrabili; AC-10 sola lettura; AC-11 nessun dato; AC-12 solo il Direttore (dettaglio in `user-story/DIR-03`) | Le medie dipendono dalla decisione sulla scala dei voti (DOC-03). Collegata a NFR-04 (usabilità) e NFR-10 (prestazioni) |
 | DIR-04 | Creare classi e comporle | AC-01/AC-02 creazione classe con nome unico per anno scolastico; AC-03/AC-04 aggiunta studenti, uno studente in una sola classe; AC-05…AC-07 materie con un docente abilitato per materia; AC-08 trasferimento *(proposta)*; AC-09 rimozione studente; AC-10 eliminazione solo di classi vuote; AC-11 riepilogo della classe; AC-12 solo il Direttore (dettaglio in `user-story/DIR-04`) | Collegata alla decisione aperta sul trasferimento fra classi: proposta in AC-08, da confermare e poi scrivere come FR |
 | DIR-05 | Pubblicare comunicazioni | AC-01 pubblicazione; AC-02 destinatari (scuola, docenti, studenti, classi); AC-03 campi obbligatori; AC-04 allegato PDF o link *(proposta)*; AC-05 in evidenza; AC-06 scadenza *(proposta)*; AC-07 modifica; AC-08 eliminazione; AC-09 letture *(proposta)*; AC-10 elenco di tutte le comunicazioni; AC-11 nessuna risposta; AC-12 solo il Direttore scrive a tutta la scuola (dettaglio in `user-story/direttore/DIR-05`) | Non c'è nella traccia: aggiunta perché le comunicazioni sono dentro il perimetro. Nessuna email: niente costi né dipendenze in più. Collegata a DOC-05 e STU-05 |
@@ -442,8 +444,11 @@ I punti che devi decidere almeno sono questi.
 - [x] Il trasferimento di uno studente fra classi (DIR-04). Si può fare? Cosa succede ai voti?
 - [ ] La modifica di una verifica dopo lo svolgimento (DOC-02).
 - [ ] La connessione che cade durante una verifica (STU-02).
-- [ ] Il fallimento del servizio esterno (per esempio l'email delle credenziali).
+- [x] Il fallimento del servizio esterno (l'email con il link di attivazione).
 - [ ] *Altre decisioni che il team ha scoperto*
+
+> **FR-ACC-01 · Link di attivazione e fallimento dell'email** (collegato a DIR-01, DIR-02, DIR-03)
+> Quando il Direttore crea un account, il sistema non genera nessuna password: invia all'utente un'email con un link di attivazione, valido 48 ore, da cui l'utente sceglie la sua password. Se l'invio fallisce, l'account viene creato comunque nello stato "in attesa di attivazione" e il sistema riprova da solo fino a 3 volte in 15 minuti, senza far aspettare il Direttore. Se anche l'ultimo tentativo fallisce, o se il link scade senza essere usato, l'account compare fra le segnalazioni della vista d'insieme e il Direttore reinvia il link con un click; il link precedente smette di funzionare. Motivazione: nessuno, nemmeno il Direttore, conosce la password di un altro utente, e un disservizio temporaneo del servizio email non blocca il lavoro né costringe a reinserire i dati.
 
 > 📌 **Cosa resta davvero da decidere voi (non pre-compilabile dalla traccia):**
 > - Le assunzioni sulla scuola (numero studenti/docenti/classi, orario, connettività)
@@ -467,7 +472,7 @@ Ogni requisito ha una soglia, una condizione e un modo per verificarlo. Ed è co
 | NFR-01 | Prestazioni | Apertura della verifica nel picco delle 9:00 | Meno di 2 s per il 95% delle richieste, con 100 studenti che la aprono nello stesso minuto | Test di carico | STU-02 |
 | NFR-02 | Sicurezza | Tutto il traffico fra frontend e backend viaggia su HTTPS | Nessuna chiamata in chiaro, certificato valido | Ispezione del traffico / certificato | Tutte |
 | NFR-03 | Sicurezza | Il controllo dei ruoli (Direttore/Docente/Studente) è applicato lato backend su ogni endpoint | Ogni chiamata API verifica il ruolo indipendentemente dal frontend | Test con Postman usando token di ruoli diversi | Tutte |
-| NFR-04 | Usabilità | Dalla vista d'insieme il Direttore raggiunge la pagina che risolve una segnalazione (studente senza classe, materia senza docente, email non partita) con un solo click | 1 click da ogni segnalazione, senza passare da menu intermedi | Prova con un collaudatore nel ruolo di Direttore | DIR-03, DIR-04 |
+| NFR-04 | Usabilità | Dalla vista d'insieme il Direttore raggiunge la pagina che risolve una segnalazione (studente senza classe, materia senza docente, email non partita, link di attivazione scaduto) con un solo click | 1 click da ogni segnalazione, senza passare da menu intermedi | Prova con un collaudatore nel ruolo di Direttore | DIR-03, DIR-04 |
 | NFR-05 | Disponibilità | Il sistema è deployato sull'infrastruttura cloud scelta e raggiungibile pubblicamente | Uptime minimo durante il periodo di collaudo (da definire, es. 99%) | Monitoraggio / test di raggiungibilità | Tutte |
 | NFR-06 | Ambientale | *…da definire — es. dimensionamento minimo per contenere i costi cloud entro il budget* | *…* | *…* | *…* |
 | NFR-07 | Supporto | L'applicazione gira in due configurazioni separate, Development e Production, senza segreti nel codice sorgente | Segreti gestiti tramite variabili d'ambiente / secret manager | Revisione della configurazione e del repository | *Trasversale* |
@@ -502,7 +507,7 @@ Quello che date per vero senza poterlo garantire.
 | ASS-01 | La scuola ha 500 studenti e 18 docenti | Il dimensionamento va rifatto |
 | ASS-02 | A scuola ogni studente ha un iPad a disposizione, almeno durante le verifiche | Le verifiche vanno fatte a turni sui PC del laboratorio e il picco delle 9:00 cambia |
 | ASS-03 | Da casa lo studente consulta materiale, voti e compiti con un PC o uno smartphone collegato a internet | Lo studente senza connessione a casa può consultare materiale, voti e compiti solo dall'iPad a scuola: va previsto il tempo per farlo durante la giornata |
-| ASS-04 | Ogni docente e ogni studente ha un indirizzo email personale valido, a cui arrivano le credenziali | Il Direttore deve consegnare le credenziali a mano; DIR-01 e DIR-02 vanno ripensati |
+| ASS-04 | Ogni docente e ogni studente ha un indirizzo email personale valido, a cui arriva il link di attivazione | Serve un altro modo per attivare l'account; DIR-01 e DIR-02 vanno ripensati |
 | ASS-05 | Il Wi-Fi della scuola regge 100 studenti in verifica nello stesso momento | La connessione che cade (STU-02 AC-10) diventa la regola, non l'eccezione; le verifiche vanno fatte a turni |
 | ASS-06 | C'è un solo Direttore, l'unico che gestisce account e classi | Servono più account Direttore e regole per le modifiche fatte da due persone insieme |
 | ASS-07 | L'anno scolastico è diviso in due quadrimestri, con date decise dalla scuola | Voti e medie per periodo (DOC-03 AC-12, STU-03 AC-05) vanno ripensati |
@@ -534,7 +539,7 @@ Le cose esterne senza cui non potete andare avanti.
 
 | ID | Dipendenza | Serve entro | Chi se ne occupa |
 | --- | --- | --- | --- |
-| DIP-01 | Account attivo sul servizio email per l'invio delle credenziali (DIR-01, DIR-02) | Prima del collaudo | *nome* |
+| DIP-01 | Account attivo sul servizio email per l'invio dei link di attivazione (DIR-01, DIR-02, FR-ACC-01) | Prima del collaudo | *nome* |
 | DIP-02 | Account attivo sul provider cloud, con i crediti studente (VIN-01) | Prima del primo deploy | *nome* |
 | DIP-03 | Un dominio e un certificato valido per l'HTTPS (NFR-02) | Prima del collaudo | *nome* |
 | DIP-04 | Uno spazio di archiviazione per i file del materiale didattico (DOC-01, STU-01) | Prima di sviluppare DOC-01 | *nome* |
@@ -600,7 +605,7 @@ I numeri di qui devono essere coerenti con la scuola che avete immaginato e con 
 | Provider cloud | Microsoft Azure | AWS | Crediti Azure for Students senza carta di credito (VIN-01) e servizi gestiti per Node.js e PostgreSQL |
 | Servizi cloud |  |  |  |
 | Regione | Italy North (Milano) | West Europe (Paesi Bassi) | Dati di minori in Italia, quindi in UE per il GDPR (VIN-07), e tempi di risposta più bassi |
-| Servizio esterno |  |  |  |
+| Servizio esterno | Azure Communication Services Email | Brevo | Pochi centesimi con i crediti Azure. Brevo ha un limite di 300 email al giorno, troppo poco a inizio anno con 500 studenti |
 
 ---
 
@@ -691,7 +696,7 @@ I numeri di qui devono essere coerenti con la scuola che avete immaginato e con 
 | Creare un docente | ✅ | ❌ | ❌ |
 | Disattivare un docente | ✅ | ❌ | ❌ |
 | Creare, modificare, disattivare uno studente | ✅ | ❌ | ❌ |
-| Reinviare le credenziali | ✅ | ❌ | ❌ |
+| Reinviare il link di attivazione | ✅ | ❌ | ❌ |
 | Creare e comporre le classi, trasferire studenti | ✅ | ❌ | ❌ |
 | Vedere la vista d'insieme della scuola | ✅ | ❌ | ❌ |
 | Caricare materiale | ✅ | ✅ | ❌ |

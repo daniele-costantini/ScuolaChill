@@ -22,7 +22,7 @@ Come Direttore, voglio avere una vista d'insieme su classi, docenti, studenti e 
 Dato che sono autenticato come Direttore, quando apro ScuolaChill, allora vedo subito un riepilogo con il numero di classi, di docenti attivi, di studenti attivi e di account ancora "in attesa di attivazione".
 
 **AC-02 · Segnalazioni da sistemare**
-Dato che ci sono situazioni che richiedono un mio intervento, quando apro la vista d'insieme, allora vedo in evidenza: studenti senza classe, classi con materie senza docente, docenti disattivati ancora assegnati a una classe ed email di credenziali non partite. Da ogni segnalazione posso andare direttamente alla pagina per risolverla.
+Dato che ci sono situazioni che richiedono un mio intervento, quando apro la vista d'insieme, allora vedo in evidenza: studenti senza classe, classi con materie senza docente, docenti disattivati ancora assegnati a una classe, email di attivazione non partite e link di attivazione scaduti senza che l'account sia stato attivato. Da ogni segnalazione posso andare direttamente alla pagina per risolverla.
 
 **AC-03 · Elenco classi**
 Dato che sono nella vista d'insieme, quando apro l'elenco classi, allora per ogni classe vedo il nome, il numero di studenti, le materie con il rispettivo docente e la media dei voti della classe.
@@ -86,7 +86,7 @@ Dato che sono autenticato come Docente o Studente, quando provo ad accedere alla
 | NFR | NFR-09 | Elenchi paginati (AC-09) |
 | NFR | NFR-10 · Prestazioni | La vista d'insieme si apre in meno di 2 s anche con 500 studenti (il Direttore ha poco tempo, ARC-001) |
 | NFR | NFR-04 · Usabilità | Da una segnalazione alla pagina che la risolve con un solo click (AC-02) |
-| Storia | DIR-01, DIR-02 | Stati degli account e reinvio credenziali |
+| Storia | DIR-01, DIR-02 | Stati degli account e reinvio del link di attivazione |
 | Storia | DIR-04 | Classi, materie e docenti assegnati |
 | Storia | DOC-02, DOC-03 | Verifiche e voti che la vista mostra |
 
