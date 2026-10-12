@@ -74,7 +74,7 @@ Dato che ho segnato come giustificata l'assenza sbagliata, quando la correggo, a
 
 - Uno studente assente per un'ora, ma presente prima e dopo, risulta "assente quell'ora" nel riepilogo della giornata.
 - Le assenze sono dati personali di minori (VIN-07): le vedono lo studente, i docenti della sua classe e il Direttore.
-- Ordine di grandezza: un appello per ogni ora di ogni classe, circa 630 appelli a settimana; al cambio d'ora fino a 21 appelli nello stesso minuto, ognuno leggero.
+- Ordine di grandezza: un appello per ogni ora di ogni classe, circa 690 appelli a settimana; al cambio d'ora fino a 23 appelli nello stesso minuto, ognuno leggero.
 
 ## Fuori perimetro di questa storia
 

@@ -75,7 +75,7 @@ Dato che sono autenticato come Studente, quando consulto il materiale, allora no
 
 - Lo studente vede il materiale della coppia classe/materia, non del docente: se il docente cambia, il materiale resta visibile (DOC-01 AC-12).
 - Il file si scarica con un link temporaneo che vale solo per lo studente che lo ha chiesto: copiare il link e passarlo a uno studente di un'altra classe non funziona (AC-05).
-- Ordine di grandezza: con 500 studenti che consultano il materiale più volte al giorno, è l'operazione di lettura più frequente dopo il login.
+- Ordine di grandezza: con 412 studenti che consultano il materiale più volte al giorno, è l'operazione di lettura più frequente dopo il login.
 
 ## Fuori perimetro di questa storia
 

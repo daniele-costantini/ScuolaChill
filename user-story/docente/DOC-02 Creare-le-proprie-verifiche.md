@@ -83,7 +83,7 @@ Dato che sono autenticato come Studente, o come Docente su una classe o materia 
 **Stati della verifica:** `bozza` → `programmata` → `aperta` → `chiusa`. Da `programmata` e `aperta` si può passare ad `annullata` (AC-10, AC-12).
 
 - Il punteggio della verifica non è il voto: il voto lo assegna il docente in DOC-03, secondo la scala dei voti ancora da decidere.
-- Con 500 studenti e il picco delle 9:00, molte verifiche possono aprirsi alla stessa ora (NFR-01).
+- Con 412 studenti e il picco delle 9:00, molte verifiche possono aprirsi alla stessa ora (NFR-01).
 
 ## Fuori perimetro di questa storia
 

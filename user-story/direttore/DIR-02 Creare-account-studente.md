@@ -46,7 +46,7 @@ Dato che il Direttore vuole disattivare (non eliminare) un account studente, qua
 Dato che sono autenticato come Docente o Studente, quando provo a creare un account studente (anche chiamando direttamente l'API), allora il sistema rifiuta la richiesta con errore di autorizzazione.
 
 **AC-10 · Creazione da file** *(proposta, da confermare con il team)*
-Dato che devo inserire molti studenti (la scuola ne ha 500), quando carico un file CSV con nome, cognome, email ed eventuale classe, allora il sistema crea gli account validi, invia a ognuno il link di attivazione e mi mostra un riepilogo delle righe scartate con il motivo (email duplicata, campo mancante, classe inesistente).
+Dato che devo inserire molti studenti (la scuola ne ha 412), quando carico un file CSV con nome, cognome, email ed eventuale classe, allora il sistema crea gli account validi, invia a ognuno il link di attivazione e mi mostra un riepilogo delle righe scartate con il motivo (email duplicata, campo mancante, classe inesistente).
 
 **AC-11 · Modifica dei dati dello studente**
 Dato che un account studente esiste, quando il Direttore modifica nome, cognome o email e salva, allora i dati vengono aggiornati con le stesse regole della creazione (email unica, campi obbligatori). Il cambio di classe non si fa qui ma con il trasferimento (DIR-04).
@@ -97,6 +97,6 @@ Dato che lo studente non ha aperto il link entro 48 ore, quando prova ad aprirlo
 ## Domande aperte per il team
 
 1. La classe va scelta obbligatoriamente alla creazione, o si può lasciare vuota come in AC-04? *(proposta: facoltativa, perché a inizio anno le classi potrebbero non esistere ancora)*
-2. Vogliamo la creazione da CSV (AC-10)? Con 500 studenti, inserirli uno alla volta è poco realistico per il Direttore, ma aggiunge lavoro.
+2. Vogliamo la creazione da CSV (AC-10)? Con 412 studenti, inserirli uno alla volta è poco realistico per il Direttore, ma aggiunge lavoro.
 3. Gli studenti sono minorenni: l'email è la loro personale, una istituzionale della scuola o quella di un genitore?
 4. Uno studente disattivato resta iscritto alla sua classe (e compare nei registri dei docenti) o ne viene tolto?

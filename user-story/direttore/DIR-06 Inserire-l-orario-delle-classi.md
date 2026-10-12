@@ -55,7 +55,7 @@ Dato che sono autenticato come Docente o Studente, quando provo a creare o modif
 | Valido dal | Sì | Data da cui vale l'orario (AC-05) |
 
 - L'orario è settimanale e si ripete uguale ogni settimana finché non cambia (AC-05).
-- Ordine di grandezza: 21 classi × circa 30 ore a settimana ≈ 630 ore da inserire a inizio anno, poi poche modifiche.
+- Ordine di grandezza: 23 classi × circa 30 ore a settimana ≈ 690 ore da inserire a inizio anno, poi poche modifiche.
 
 ## Fuori perimetro di questa storia
 

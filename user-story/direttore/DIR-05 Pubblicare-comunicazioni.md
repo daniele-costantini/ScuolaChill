@@ -65,7 +65,7 @@ Dato che sono autenticato come Docente o Studente, quando provo a pubblicare una
 
 - Mittente e data di pubblicazione vengono registrati in automatico.
 - Le comunicazioni restano nella sezione: non partono email né notifiche, quindi niente costi né dipendenze in più.
-- Ordine di grandezza: qualche comunicazione a settimana dal Direttore; ogni comunicazione a tutta la scuola arriva a circa 520 persone.
+- Ordine di grandezza: qualche comunicazione a settimana dal Direttore; ogni comunicazione a tutta la scuola arriva a circa 460 persone (412 studenti e 50 docenti).
 
 ## Fuori perimetro di questa storia
 

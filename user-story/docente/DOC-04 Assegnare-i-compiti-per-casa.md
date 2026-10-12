@@ -66,7 +66,7 @@ Dato che sono autenticato come Studente, quando provo a segnare, modificare o el
 - Il compito appartiene alla coppia classe/materia, non al docente, come il materiale (DOC-01 AC-12).
 - ScuolaChill non salva file per i compiti: solo testo e link. Non c'è spazio per i file da pagare.
 - Data di creazione e autore vengono registrati in automatico.
-- Ordine di grandezza: circa 10 compiti a settimana per classe, quindi 21 classi × 10 × 33 settimane ≈ 7.000 compiti l'anno, pochi KB ciascuno.
+- Ordine di grandezza: circa 10 compiti a settimana per classe, quindi 23 classi × 10 × 33 settimane ≈ 7.600 compiti l'anno, pochi KB ciascuno.
 
 ## Fuori perimetro di questa storia
 
