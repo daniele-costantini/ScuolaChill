@@ -1,4 +1,4 @@
-# PRD di ScuolaChill · Team Regeestro
+# PRD di ScuolaChill
 
 > 💡 **Come usare questo template**
 >
@@ -17,7 +17,7 @@
 | **Prodotto** | ScuolaChill |
 | **Team** |  |
 | **Autori** | Daniele Costantini |
-| **Versione** | 0.1.10 |
+| **Versione** | 0.2.1 |
 | **Data** | 09/10/2026 |
 | **Stato** | Bozza |
 
@@ -45,7 +45,8 @@
 | 0.1.7 | 09/10/2026 | Daniele Costantini | I compiti diventano un avviso sul registro: il docente li segna con scadenza e link a Classroom, consegna e correzione restano su Classroom. Così non servono file né spazio in più. Riscritte DOC-04 e STU-04 (ora "Consultare i compiti per casa"); ASS-10 ora riguarda Classroom; aggiornati perimetro, NFR-11, ASS-03, DIP-04, profilo di carico e permessi |
 | 0.1.8 | 09/10/2026 | Daniele Costantini | Esclusi in modo esplicito l'account genitore, le note disciplinari e le circolari, che nessuna parte del PRD citava |
 | 0.1.9 | 09/10/2026 | Daniele Costantini | Comunicazioni e note disciplinari dentro il perimetro: nuove storie del team DIR-05, DOC-05, DOC-06 e STU-05 con user flow e scenari; aggiornati panoramica, archetipo dello studente, NFR-11, VIN-07, profilo di carico e permessi |
-| 0.1.10 | 09/10/2026 | Daniele Costantini | Note disciplinari: confermato che i docenti della classe vedono le note dei colleghi, ma non possono modificarle né annullarle (nuovo DOC-06 AC-06) |
+| 0.2.0 | 09/10/2026 | Daniele Costantini | Note disciplinari: confermato che i docenti della classe vedono le note dei colleghi, ma non possono modificarle né annullarle (nuovo DOC-06 AC-06) |
+| 0.2.1 | 09/10/2026 | Daniele Costantini | Scelte tecnologiche: completata la tabella con alternative e motivazioni per backend (Node.js), frontend (React) e database (PostgreSQL) |
 
 > 💡 Il PRD cambierà durante l'anno. Ogni modifica va registrata qui, con la sua ragione. Un PRD che dice una cosa mentre il codice ne fa un'altra è peggio di nessun PRD.
 
@@ -443,9 +444,6 @@ I punti che devi decidere almeno sono questi.
 - [x] Il fallimento del servizio esterno (per esempio l'email delle credenziali).
 - [ ] *Altre decisioni che il team ha scoperto*
 
-> **FR-EXT-01 · Fallimento del servizio email delle credenziali** (collegato a DIR-01, DIR-02)
-> Se l'invio dell'email con le credenziali fallisce, l'account viene comunque creato nello stato "in attesa di attivazione". Il Direttore vede subito un avviso che l'email non è partita e può richiedere un nuovo invio dall'elenco utenti. Motivazione: un disservizio temporaneo del provider email non deve bloccare il lavoro del Direttore né fargli reinserire i dati.
-
 > 📌 **Cosa resta davvero da decidere voi (non pre-compilabile dalla traccia):**
 > - Le assunzioni sulla scuola (numero studenti/docenti/classi, orario, connettività)
 > - Lo stack tecnologico e l'infrastruttura cloud, con alternative motivate
@@ -595,13 +593,13 @@ I numeri di qui devono essere coerenti con la scuola che avete immaginato e con 
 
 | Area | Scelta | Alternativa considerata | Perché avete scelto così |
 | --- | --- | --- | --- |
-| Backend | Node.js | *…* |  |
-| Frontend | React(Vite) | *…* | *…* |
-| Database | SQL | *…* | *…* |
-| Provider cloud | *…* | *…* | *…* |
-| Servizi cloud | *…* | *…* | *…* |
-| Regione | UE | *…* | *…* |
-| Servizio esterno | *…* | *…* | *…* |
+| Backend | Node.js con Express | Next.js anche per le API (un solo progetto) | API REST separate, facili da documentare e provare (NFR-08), con il controllo dei ruoli in un posto solo (NFR-03) |
+| Frontend | React con Next.js | React con Vite | Routing pronto per le tre aree; con lo static export non serve un server in più |
+| Database | PostgreSQL | MongoDB | I dati sono relazionali: vincoli (uno studente in una sola classe), transazioni (pubblicazione dei voti) e medie (DIR-03) si fanno bene in SQL |
+| Provider cloud | Microsoft Azure | AWS | Crediti Azure for Students senza carta di credito (VIN-01) e servizi gestiti per Node.js e PostgreSQL |
+| Servizi cloud |  |  |  |
+| Regione | Italy North (Milano) | West Europe (Paesi Bassi) | Dati di minori in Italia, quindi in UE per il GDPR (VIN-07), e tempi di risposta più bassi |
+| Servizio esterno |  |  |  |
 
 ---
 
@@ -788,12 +786,6 @@ Stima il tempo di ogni fase come se tutto andasse bene. Poi aggiungi un margine.
 ## Piano di valutazione
 
 Come capirete che ScuolaChill funziona e come validerete che la vostra soluzione sta avendo un impatto positivo?
-
-| Metrica | Obiettivo | Come la misurate | Quando |
-| --- | --- | --- | --- |
-| *es. Collaudatori che completano una verifica senza aiuto* | *90%* | *Osservazione durante il collaudo* | *Collaudo* |
-| *es. Voti persi* | *0* | *Confronto fra voti inseriti e voti salvati* | *Primo mese* |
-|  |  |  |  |
 
 | Metrica | Obiettivo | Come la misurate | Quando |
 | --- | --- | --- | --- |
