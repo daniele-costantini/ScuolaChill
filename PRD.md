@@ -605,7 +605,7 @@ I numeri di qui devono essere coerenti con la scuola che avete immaginato e con 
 | Provider cloud | Microsoft Azure | AWS | Crediti Azure for Students senza carta di credito (VIN-01) e servizi gestiti per Node.js e PostgreSQL |
 | Servizi cloud |  |  |  |
 | Regione | Italy North (Milano) | West Europe (Paesi Bassi) | Dati di minori in Italia, quindi in UE per il GDPR (VIN-07), e tempi di risposta più bassi |
-| Servizio esterno | Azure Communication Services Email | Brevo | Pochi centesimi con i crediti Azure. Brevo ha un limite di 300 email al giorno, troppo poco a inizio anno con 500 studenti |
+| Servizio esterno | Azure Communication Services Email *(oppure Google)*| Brevo | Pochi centesimi con i crediti Azure. Brevo ha un limite di 300 email al giorno, troppo poco a inizio anno con 500 studenti |
 
 ---
 
