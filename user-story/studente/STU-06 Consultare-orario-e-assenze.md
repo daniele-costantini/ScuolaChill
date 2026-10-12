@@ -24,7 +24,7 @@ Dato che apro l'orario durante la giornata, quando lo guardo, allora il giorno d
 Dato che il Direttore ha cambiato l'orario da una certa data (DIR-06 AC-05), quando apro la sezione Orario, allora vedo l'orario nuovo e un avviso con la data da cui vale.
 
 **AC-04 · Le mie assenze**
-Dato che apro la sezione Assenze, quando la consulto, allora vedo, dalla più recente, le giornate in cui sono stato assente, entrato in ritardo o uscito in anticipo, con le ore e le materie che ho perso.
+Dato che apro la sezione Assenze, quando la consulto, allora vedo, dalla più recente, le giornate in cui sono stato assente, entrato in ritardo o uscito in anticipo, con le ore e le materie che ho perso e se sono "giustificate" o "da giustificare".
 
 **AC-05 · Totali**
 Dato che apro la sezione Assenze, quando guardo il riepilogo, allora vedo il totale di ore e di giorni di assenza del quadrimestre e, per ogni materia, le ore di assenza sul totale delle ore previste.
@@ -51,7 +51,7 @@ Dato che sono autenticato come Studente, quando provo a vedere le assenze di un 
 Dato che apro orario e assenze dall'iPad a scuola, oppure dal PC o dal telefono a casa, quando li consulto, allora la pagina si adatta allo schermo senza zoomare né scorrere in orizzontale.
 
 **AC-13 · Sola lettura**
-Dato che sono autenticato come Studente, quando consulto orario e assenze, allora non posso modificarli né giustificare le assenze (DOC-07 AC-11).
+Dato che sono autenticato come Studente, quando consulto orario e assenze, allora non posso modificarli né giustificare da solo le assenze: la giustificazione la registra il docente quando gliela porto su carta (DOC-07 AC-11).
 
 ---
 
@@ -72,7 +72,7 @@ Dato che sono autenticato come Studente, quando consulto orario e assenze, allor
 
 - Inserimento dell'orario → **DIR-06**
 - Appello e correzione delle assenze → **DOC-07**
-- Giustificazioni
+- Giustificazione online da parte dello studente: la registra il docente (DOC-07 AC-11)
 - Avviso del limite di assenze per la validità dell'anno *(da decidere)*
 
 ## Collegamenti
